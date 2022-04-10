@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>xGuoguo</title>
+        <script src="libs/jquery/v3.4.1/jquery.min.js"></script>
+        <link href="libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <script src="xguoguo.min.js"></script>
+    </head>
+    <body style="margin: 0px; padding: 0px;">
+        <!--导航-->
+        <div class="x-guoguo-navigate-horizontal-float"></div>
+        <div class="x-guoguo-navigate-vertical-float"></div>
+        <div class="x-guoguo-navigate-vertical-dock"></div>
+        <!--树-->
+        <div class="x-guoguo-tree-vertical-default"></div>
+        <div class="x-guoguo-tree-vertical-radio"></div>
+        <div class="x-guoguo-tree-vertical-checkbox"></div>
+        <script>
+            $(document).ready(function(){
+                $.ajax(
+                    {
+                        method: "GET",
+                        url: "http://127.0.0.1:8000/api/menu",
+                        success: function(e){
+                            if(e.code == 200)
+                            {
+                                //导航-水平-浮动
+                                $('.x-guoguo-navigate-horizontal-float').xGuoguo(
+                                    {
+                                        //类型
+                                        type: "navigate",
+                                        //方向
+                                        direction: "horizontal",
+                                        //风格
+                                        style: "float",
+                                        //数据
+                                        data: e.data,
+                                        //节点对象
+                                        item: {
+                                            //宽度
+                                            width: 150,
+                                        },
+                                    }
+                                );
+                                //导航-垂直-浮动
+                                $('.x-guoguo-navigate-vertical-float').xGuoguo(
+                                    {
+                                        //类型
+                                        type: "navigate",
+                                        //方向
+                                        direction: "vertical",
+                                        //风格
+                                        style: "float",
+                                        //数据
+                                        data: e.data,
+                                        //节点对象
+                                        item: {
+                                            //宽度
+                                            width: 150,
+                                        },
+                                    }
+                                );
+                                //导航-垂直-嵌入
+                                $('.x-guoguo-navigate-vertical-dock').xGuoguo(
+                                    {
+                                        //类型
+                                        type: "navigate",
+                                        //方向
+                                        direction: "vertical",
+                                        //风格
+                                        style: "dock",
+                                        //数据
+                                        data: e.data,
+                                        //宽度
+                                        width: 200,
+                                        //节点对象
+                                        item: {
+                                            padding: {
+                                                left: 20,
+                                            },
+                                        },
+                                    }
+                                );
+                                //树-垂直-默认
+                                $('.x-guoguo-tree-vertical-default').xGuoguo(
+                                    {
+                                        //类型
+                                        type: "tree",
+                                        //方向
+                                        direction: "vertical",
+                                        //风格
+                                        style: "default",
+                                        //数据
+                                        data: e.data,
+                                    }
+                                );
+                                //树-垂直-单选
+                                $('.x-guoguo-tree-vertical-radio').xGuoguo(
+                                    {
+                                        //类型
+                                        type: "tree",
+                                        //方向
+                                        direction: "vertical",
+                                        //风格
+                                        style: "radio",
+                                        //数据
+                                        data: e.data,
+                                    }
+                                );
+                                //树-垂直-多选
+                                $('.x-guoguo-tree-vertical-checkbox').xGuoguo(
+                                    {
+                                        //类型
+                                        type: "tree",
+                                        //方向
+                                        direction: "vertical",
+                                        //风格
+                                        style: "checkbox",
+                                        //数据
+                                        data: e.data,
+                                    }
+                                );
+                            }
+                        },
+                    }
+                );
+            });
+        </script>
+    </body>
+</html>

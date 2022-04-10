@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link href="libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <style>
+            /*loading*/
+
+            .loading
+            {
+                animation: rotate 1s infinite linear;
+                display: inline-block;
+            }
+            .loading-box-icon
+            {
+
+                color: #808695;
+                animation: rotate 1s infinite linear;
+                display: inline-block;
+                height: 36px;
+                /*width: 36px;*/
+                text-align: center;
+                line-height: 36px;
+                /*background-color: red;*/
+                border-radius: 100%;
+            }
+            /*loading界面提示信息盒子中的图标旋转动画*/
+            @keyframes rotate{
+                from
+                {
+                    transform: rotate(0deg);
+                }
+                to
+                {
+                    transform: rotate(360deg);
+                }
+            }
+
+
+            .btn
+            {
+                background-color: #19be6b;
+                border-color: #47cb89;
+                color: #ffffff;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            .btn:hover
+            {
+                background-color: #47cb89;
+                border-color: #47cb89;
+            }
+
+            .btn-guoguo
+            {
+                line-height: 30px;
+                display: flex;
+                align-items: center;
+                background-color: #19be6b;
+                color: #ffffff;
+                border-radius: 2px;
+                border-color: #47cb89;
+                cursor: pointer;
+            }
+            .btn-guoguo:hover
+            {
+                background-color: #47cb89;
+                border-color: #47cb89;
+            }
+
+            .user-btn
+            {
+
+            }
+
+
+
+
+        </style>
+    </head>
+    <body>
+        <div class="btn-guoguo">
+            <i style="padding: 0px 5px;" class="ri-mini-program-fill loading"></i>
+            <span>提交保存</span>
+        </div>
+        <span class="btn-guoguo">
+            <i style="padding: 0px 5px;" class="ri-loader-4-line loading"></i>
+            <span>提交保存</span>
+        </span>
+        <button class="btn-guoguo">
+            <i style="padding: 0px 5px;" class="ri-loader-4-line loading"></i>
+            <span>提交保存</span>
+        </button>
+
+
+        <button class="btn-guoguo">
+            <i class="ri-loader-4-line loading"></i>
+            <span style="display: inline-block; padding-left: 5px;">提交保存</span>
+        </button>
+        <span class="btn-guoguo">
+            <i class="ri-loader-4-line loading"></i>
+            <span style="display: inline-block; padding-left: 5px;">提交保存</span>
+        </span>
+
+        <div style="display: inline-block;">
+            <span class="btn-guoguo">
+                <i class="ri-loader-4-line loading"></i>
+                <span style="display: inline-block; padding-left: 5px;">提交保存</span>
+            </span>
+        </div>
+
+
+    </body>
+</html>

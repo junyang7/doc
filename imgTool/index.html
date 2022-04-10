@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery.min.js"></script>
+    <style>
+        *
+        {
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+<div id="line" style="position: absolute; border: 1px dashed red;"></div>
+<script>
+    let mousedown = false;
+    $(document).ready(() => {
+        $(document).on("mousedown", () => {
+            $("#line").css(
+                {
+                    left: event.clientX -1,
+                    top: event.clientY - 1,
+                }
+            );
+            mousedown = true;
+        });
+        $(document).on("mousemove", (event) => {
+            if(mousedown)
+            {
+                $("#line").css(
+                    {
+                        width: event.clientX - $("#line").css("left").replace("px", "") -1,
+                        height: event.clientY - $("#line").css("top").replace("px", "") -1,
+                    }
+                );
+            }
+        })
+        $(document).on("mouseup", () => {
+            mousedown = false;
+        });
+    });
+</script>
+</body>
+</html>

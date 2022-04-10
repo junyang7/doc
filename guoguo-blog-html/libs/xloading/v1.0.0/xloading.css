@@ -1,0 +1,49 @@
+/*清除默认样式*/
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+/*loading组件容器，铺满屏幕*/
+.guoguo-loading-box
+{
+    position: absolute;
+    box-sizing: border-box;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    text-align: center;
+}
+/*loading内所有div展示位行内块级*/
+.guoguo-loading-box div
+{
+    display: inline-block;
+}
+/*loading中内容容器，定位布局*/
+.guoguo-loading-box > div:first-child
+{
+    position: absolute;
+    bottom: 50%;
+    font-size: 12px;
+    color: #808695;
+}
+/*loading图标*/
+.guoguo-loading-box > div:first-child  > div:first-child > i:first-child
+{
+    display: inline-block;
+    animation: rotate 1s linear infinite ;
+    font-size: 20px;
+}
+/*选装动画*/
+@keyframes rotate {
+    from
+    {
+        transform: rotate(0deg);
+    }
+    to
+    {
+        transform: rotate(360deg);
+    }
+}

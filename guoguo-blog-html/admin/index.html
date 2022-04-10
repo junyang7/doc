@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--jquery-->
+    <script src="/libs/jquery/v3.4.1/jquery.min.js"></script>
+    <!--xtree-->
+    <script src="/libs/xguoguo/v1.0.0/xguoguo.js"></script>
+    <!--tinycolor-->
+    <script src="/libs/tinycolor/v1.4.1/tinycolor-min.js"></script>
+    <!--remixicon-->
+    <link href="/libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+    <!--codemirror-->
+    <script src="/libs/codemirror/v5.48.4/codemirror.min.js"></script>
+    <link href="/libs/codemirror/v5.48.4/codemirror.css" type="text/css" rel="stylesheet">
+    <!--xeditor-->
+    <script src="/libs/xeditor/v1.0.0/xeditor.js"></script>
+    <!--xloading-->
+    <link href="/libs/xloading/v1.0.0/xloading.css" rel="stylesheet">
+    <script src="/libs/xloading/v1.0.0/xloading.js"></script>
+    <style>
+        *
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+        /*布局样式*/
+        .layout
+        {
+            z-index: -1;
+        }
+        /*上布局*/
+        .top
+        {
+            background-color: #f8f8f9;
+            z-index: 0;
+            position: absolute;
+            height: 100px;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            box-shadow: 0px 0px 2px 1px #e8eaec;
+
+        }
+        /*左布局*/
+        .left
+        {
+            z-index: 0;
+            position: absolute;
+            width: 250px;
+            top: 100px;
+            left: 0px;
+            bottom: 50px;
+            border-right: 1px solid #e8eaec;
+            overflow: auto;
+        }
+        /*右布局*/
+        .main
+        {
+            position: absolute;
+            top: 100px;
+            left: 250px;
+            right: 10px;
+            bottom: 50px;
+            padding: 36px 36px 36px 46px;
+            font-size: 12px;
+            color: #515a6e;
+            line-height: 24px;
+            overflow-y: auto;
+        }
+        /*下布局*/
+        .bottom
+        {
+            position: absolute;
+            height: 50px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            border-top: 1px solid #e8eaec;
+        }
+        .top-logo
+        {
+            position: absolute;
+            left: 0px;
+            width: 250px;
+            height: 100px;
+            text-indent: 36px;
+            line-height: 100px;
+            font-weight: 100;
+            color: #515a6e;
+            font-size: 18px;
+            text-shadow: 0px 0px 2px #ffffff;
+            /*border-right: 1px solid #e8eaec;*/
+        }
+        /*上布局导航*/
+        .top-nav
+        {
+            position: absolute;
+            left: 286px;
+            /*border-left: 1px solid #e8eaec;*/
+            vertical-align: top;
+        }
+
+
+
+        /*iframe盒子div容器*/
+        .iframe-box-div
+        {
+            height: 100%;
+            width: 100%;
+        }
+        /*iframe盒子iframe自身*/
+        .iframe-box-div-content
+        {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+            line-height: 20px;
+            font-size: 12px;
+            border: 0px solid blue;
+        }
+
+        /*loading*/
+        /*loading界面整个大背景*/
+        .loading-box
+        {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            background-color: #ffffff;
+            display: none;
+        }
+        /*loading界面整个大背景*/
+        .loading-box-info
+        {
+            width: 200px;
+            height: 100px;
+            box-sizing: border-box;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -100px;
+            margin-top: -50px;
+            text-align: center;
+        }
+        /*loading界面提示信息盒子中的图标*/
+        .loading-box-icon
+        {
+
+            color: #808695;
+            animation: rotate 1s infinite linear;
+            display: inline-block;
+            height: 30px;
+            width: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 30px;
+        }
+        /*loading界面提示信息盒子中的图标旋转动画*/
+        @keyframes rotate{
+            from
+            {
+                transform: rotate(0deg);
+            }
+            to
+            {
+                transform: rotate(360deg);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="layout top">
+    <div class="top-logo"></div>
+    <div class="top-nav">
+        <div class="x-guoguo-navigate-horizontal-float"></div>
+    </div>
+</div>
+<div class="layout left">
+    <div style="padding: 36px;">
+        <div class="x-guoguo-navigate-vertical-dock"></div>
+    </div>
+</div>
+<div class="layout main">
+    <div class="iframe-box-div">
+        <iframe id="iframe" class="iframe-box-div-content" src="main.html" frameborder="0"></iframe>
+    </div>
+    <div class="loading-box">
+        <div class="loading-box-info">
+            <div class="loading-box-icon">
+                <i class="ri-loader-4-line"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layout bottom"></div>
+
+
+
+
+<script>
+   function xTreeItemClick(href, id, pid)
+   {
+       if(pid == 0)
+       {
+           return;
+       }
+       setLocationHref(href, id);
+       setIframeSrc(href);
+   }
+   function setLocationHref(href, id)
+   {
+       $(`.x-guoguo-navigate-vertical-dock div[id=${id}]`).click();
+   }
+   function setIframeSrc(href)
+   {
+       let iframe = document.getElementById("iframe");
+       iframe.src = href;
+   }
+    $(document).ready(function(){
+        // window.onhashchange = init;
+        $.ajax(
+            {
+                method: "GET",
+                url: "http://127.0.0.1:8000/api/admin/menu/left",
+                success: function(e)
+                {
+                    if(e.code == 200)
+                    {
+                        //导航-垂直-嵌入
+                        $('.x-guoguo-navigate-vertical-dock').xGuoguo(
+                            {
+                                //类型
+                                type: "navigate",
+                                //方向
+                                direction: "vertical",
+                                //风格
+                                style: "dock",
+                                //数据
+                                data: e.data,
+                                //宽度
+                                width: "100%",
+                                //节点对象
+                                item: {
+                                    //注册回调函数
+                                    callback: {
+                                        click: xTreeItemClick,
+                                    },
+                                    height: 36,
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
+                            }
+                        );
+                        // init(e);
+                    }
+                },
+            }
+        );
+    });
+</script>
+</body>
+</html>

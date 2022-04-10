@@ -1,0 +1,81 @@
+/*清除默认样式*/
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+/*message定位容器，用来定位消息的显示位置*/
+.guoguo-message-box
+{
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    width: 100%;
+    user-select: none;
+}
+/*message内容容器*/
+.guoguo-message-box > div
+{
+    display: inline-block;
+    text-align: center;
+    width: auto;
+    height: auto;
+    margin: auto;
+    top: 0px;
+}
+/*message内容容器*/
+.guoguo-message-box > div > ul
+{
+    list-style: none;
+}
+/*message内容容器中每个消息最外层li*/
+.guoguo-message-box > div > ul > li
+{
+    margin: 5px;
+}
+/*message内容容器中每个消息div*/
+.guoguo-message-box > div > ul > li > div
+{
+    min-height: 36px;
+    line-height: 36px;
+    padding: 0px 10px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+}
+/*message-default*/
+.default
+{
+    border: 1px solid rgba(81,90,110,0.5);
+    color: rgb(81,90,110);
+    background-color: rgba(81,90,110,0.1);
+}
+/*message-info*/
+.info
+{
+    border: 1px solid rgba(45,183,245,0.5);
+    color: rgb(45,183,245);
+    background-color: rgba(45,183,245, 0.1);
+}
+/*message-success*/
+.success
+{
+    border: 1px solid rgba(25,190,107,0.5);
+    color: rgb(25,190,107);
+    background-color: rgba(25,190,107, 0.1);
+}
+/*message-warning*/
+.warning
+{
+    border: 1px solid rgba(255,153,0,0.5);
+    color: rgb(255,153,0);
+    background-color: rgba(255,153,0, 0.1);
+}
+/*message-error*/
+.error
+{
+    border: 1px solid rgba(237,64,20,0.5);
+    color: rgb(237,64,20);
+    background-color: rgba(237,64,20, 0.1);
+}

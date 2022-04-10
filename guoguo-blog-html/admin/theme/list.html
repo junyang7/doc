@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!--jquery-->
+        <script src="/libs/jquery/v3.4.1/jquery.min.js"></script>
+
+        <!--remixicon-->
+        <link href="/libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+
+        <!--xloading-->
+        <link href="/libs/xloading/v1.0.0/xloading.css" rel="stylesheet">
+        <script src="/libs/xloading/v1.0.0/xloading.js"></script>
+
+        <style>
+            *
+            {
+                margin: 0px;
+                padding: 0px;
+                font-size: 12px;
+                color: #515a6e;
+                box-sizing: border-box;
+            }
+            table td,th
+            {
+                padding: 0px;
+                margin: 0px;
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            /*翻页工具条ul*/
+            .page-bar-ul
+            {
+                list-style: none;
+                font-size: 0px;
+            }
+            /*翻页工具条ul>li*/
+            .page-bar-ul-li
+            {
+                display: inline-block;
+            }
+            /*翻页工具条ul>li>div选项*/
+            .page-bar-ul-li-div
+            {
+                height: 36px;
+                line-height: 36px;
+                padding: 0px 10px;
+                border: 1px solid #e8eaec;
+                outline: none;
+                margin-right: 5px;
+                display: inline-block;
+                user-select: none;
+            }
+            /*翻页工具条ul>li>div选项中非按钮文本*/
+            .page-bar-ul-li-div-text
+            {
+                margin-right: 0px;
+                border: none;
+            }
+            /*翻页工具条ul>li>div>text>input选项中非按钮文本中输入框*/
+            .page-bar-ul-li-div-text-input
+            {
+                width: 36px;
+                height: 36px;
+                box-sizing: border-box;
+                margin: 0px;
+                padding: 0px;
+                border: 1px solid #e8eaec;
+                outline: none;
+                text-align: center;
+            }
+
+
+
+
+            /*单条数据对象操作控制按钮td*/
+            .control-td
+            {
+                user-select: none;
+            }
+            /*单条数据对象操作控制按钮td>ul*/
+            .control-td-ul
+            {
+                list-style: none;
+                font-size: 0px;
+                height: 36px;
+                padding: 0px;
+                margin: 0px;
+            }
+            /*单条数据对象操作控制按钮td>ul>li*/
+            .control-td-ul-li
+            {
+                display: inline-block;
+                margin: 0px 2px;
+                padding: 0px;
+            }
+
+            /*通用按钮样式*/
+            .common-btn
+            {
+                user-select: none;
+                cursor: pointer;
+            }
+
+
+
+
+        </style>
+    </head>
+    <body>
+        <!--导航-->
+        <div style="border: 0px solid red; height: 36px; line-height: 36px; padding: 0px; margin-bottom: 36px;">
+            <ul style="list-style: none; font-size: 0px; margin: 0px;">
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">首页</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">教程</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">主题</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">列表</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <!--搜索控制区-->
+        <div style="border: 0px solid red; height: 36px; line-height: 36px; padding: 0px; margin-bottom: 36px;">
+            <ul style="list-style: none; font-size: 0px; margin: 0px;">
+                <!--搜索选项-->
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; width: 100px;">
+                        <label style="font-size: 12px;">教程主题：</label>
+                    </div>
+                    <div style="display: inline-block; height: 36px; margin-right: 30px;">
+                        <input type="text" style="text-indent: 5px; width: 200px; height: 36px; box-sizing: border-box; margin: 0px; padding: 0px; border: 1px solid #e8eaec; outline: none;" placeholder="请输入主题关键词（可选）">
+                    </div>
+                </li>
+                <!--搜索按钮-->
+                <li style="display: inline-block; font-size: 0px; float: right;">
+                    <div class="common-btn" style="height: 36px; width: 100px; border: 1px solid #e8eaec; outline: none; text-align: center;">
+                        <i class="ri-search-line"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--数据展示区-->
+        <div style="border: 0px solid red; height: auto; line-height: 36px; padding: 0px;">
+            <div>
+                <table border="1" style="width: 100%; border-collapse: collapse; font-size: 12px; border: 1px solid #e8eaec; margin-bottom: 36px;">
+                    <thead>
+                        <tr style="height: 36px;">
+                            <th style="width: 100px;">#</th>
+                            <th>主题</th>
+                            <th style="width: 100px;">文章数量</th>
+                            <th style="width: 100px;">
+                                热度
+                            </th>
+                            <th style="width: 150px;">创建时间</th>
+                            <th style="width: 100px;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-tbody-data"></tbody>
+                </table>
+            </div>
+            <div style="margin-bottom: 36px;">
+                <div class="create common-btn" style="height: 36px; line-height: 36px; width: 100px; outline: none; text-align: center; border: 1px solid #e8eaec; text-align: center">
+                    <i class="ri-add-line"></i>
+                </div>
+            </div>
+            <div style="font-size: 0px;">
+                <ul class="page-bar-ul">
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">首页</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">8</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">9</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">&lt;</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">10</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">&gt;</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">11</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">12</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">尾页</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="page-bar-ul-li-div page-bar-ul-li-div-text">
+                            <span>共</span>
+                            <span>846</span>
+                            <span>条数据，每页展示</span>
+                            <input class="page-bar-ul-li-div-text-input" type="number" value="10">
+                            <span>条，跳转到第</span>
+                            <input class="page-bar-ul-li-div-text-input" type="number" value="10">
+                            <span>页</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+
+                $.ajax(
+                    {
+                        method: "GET",
+                        url: "http://127.0.0.1:8000/api/course",
+                        data: {
+
+                        },
+                        success: function(e){
+                            $(".table-tbody-data").empty();
+                            e.data.forEach(function(row){
+                                let tr = $(
+                                    '<tr style="height: 36px;">'+
+                                    '<td>' + row.id + '</td>'+
+                                    '<td>' + row.name + '</td>'+
+                                    '<td>' + row.article_count + '</td>'+
+                                    '<td>' + row.view_count + '</td>'+
+                                    '<td>' + row.created_at + '</td>'+
+                                    '<td class="control-td">'+
+                                    '<ul class="control-td-ul">'+
+                                    '<li class="control-td-ul-li">'+
+                                    '<i class="common-btn ri-edit-box-line"></i>'+
+                                    '</li>'+
+                                    '<li class="control-td-ul-li">'+
+                                    '<i class="common-btn ri-delete-bin-3-line"></i>'+
+                                    '</li>'+
+                                    '</ul>'+
+                                    '</td>'+
+                                    '</tr>'
+                                );
+                                $(".table-tbody-data").append(tr);
+                            });
+                        },
+                        error: function(e){
+                            console.log(e)
+                        },
+                    }
+                );
+
+
+
+                $(".create").click(function(e){
+                    parent.setIframeSrc("theme/create.html");
+                });
+                $(".update").click(function(e){
+                    parent.setIframeSrc("theme/update.html");
+                });
+                $(".delete").click(function(e){
+                    parent.setIframeSrc("theme/delete.html");
+                });
+            });
+        </script>
+    </body>
+</html>

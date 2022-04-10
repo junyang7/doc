@@ -1,0 +1,19 @@
+{
+  "repositories": {
+    "guojunyang/pf": {
+      "type": "path",
+      "url": "../pf",
+      "options": {
+        "symlink": true
+      }
+    }
+  },
+  "require": {
+    "guojunyang/pf": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}

@@ -1,0 +1,2471 @@
+<p>测试域名：<a href="http://order-api.chongmuniao.cn/app/">http://order-api.chongmuniao.cn/app/</a><br>正式域名：<a href="https://order-api.jjbangbang.com/app/">https://order-api.jjbangbang.com/app/</a>  </p>
+<hr>
+<p>[TOC]</p>
+<hr>
+<h3 id="购物车商品数量">购物车商品数量</h3>
+<p>调用场景：获取购物车商品数量<br>接口地址：sampleCartSkuCount/getSampleCartSkuCountS<br>请求方式：GET<br>输出结果：  </p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;cart_sku_count&quot;: 0
+    }
+}
+</code></pre>
+<h3 id="添加某个商品到购物车">添加某个商品到购物车</h3>
+<p>调用场景：添加某个商品到购物车<br>接口地址：sampleCartSku/addSampleCartSkuS<br>请求方式：POST<br>必需参数：3个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">goods_id</td>
+<td align="left">1</td>
+<td align="left">商品ID</td>
+</tr>
+<tr>
+<td align="left">sku_id</td>
+<td align="left">1</td>
+<td align="left">skuID</td>
+</tr>
+<tr>
+<td align="left">sku_count</td>
+<td align="left">1</td>
+<td align="left">sku数量</td>
+</tr>
+</tbody></table>
+<p>可选参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sku_selected</td>
+<td align="left">Y</td>
+<td align="left">是否被选中，Y是，N否，默认Y</td>
+</tr>
+</tbody></table>
+<p>输出结果：  </p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h3 id="更新购物车某些商品">更新购物车某些商品</h3>
+<p>调用场景：更新购物车某些商品<br>接口地址：sampleCartSku/setSampleCartSkuM<br>请求方式：POST<br>必需参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">cart_skus</td>
+<td align="left">参见备注①</td>
+<td align="left">JSON格式字符串</td>
+</tr>
+</tbody></table>
+<p>备注①cart_skus参数JSON格式化结构：  </p>
+<pre><code>[
+    {
+        &quot;item_id&quot;: 1, // 条目ID
+        &quot;goods_id&quot;: 1, // 商品ID
+        &quot;sku_id&quot;: 1, // skuID
+        &quot;sku_count&quot;: 1, // sku数量
+        &quot;sku_selected&quot;: &quot;Y&quot; // 是否选中，Y是，N否
+    },
+]
+</code></pre>
+<p>输出结果：  </p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h3 id="删除购物车中某些商品">删除购物车中某些商品</h3>
+<p>调用场景：删除购物车中某些商品<br>接口地址：sampleCartSku/delSampleCartSkuM<br>请求方式：POST<br>必需参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">cart_skus</td>
+<td align="left">参见备注①</td>
+<td align="left">需要删除的购物车的商品JSON字符串</td>
+</tr>
+</tbody></table>
+<p>备注①，cart_skus参数的JSON格式化形式如下（实际传递是处理成JSON字符串）：  </p>
+<pre><code>[ // 购物车商品列表，以sku为单位
+  {
+    &quot;goods_id&quot;: 1, // 商品ID
+    &quot;sku_id&quot;: 1 // skuID
+  },
+]
+</code></pre>
+<p>输出结果：  </p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h3 id="获取购物车中所有商品">获取购物车中所有商品</h3>
+<p>调用场景：获取购物车中所有商品<br>接口地址：sampleCartSku/listSampleCartSkuM<br>请求方式：GET<br>必需参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">region</td>
+<td align="left">北京市-朝阳区</td>
+<td align="left">两级行政区，中间中划线分割，整体是个字符串，行政区目录必需精准完整</td>
+</tr>
+</tbody></table>
+<p>输出结果：  </p>
+<pre><code>{
+  &quot;code&quot;: 0, // 0正常，其他异常
+  &quot;msg&quot;: &quot;&quot;,
+  &quot;data&quot;: {
+    &quot;cart_sku_count&quot;: 7, // 商品数量
+    &quot;cart_skus&quot;: [ // 商品列表
+      {
+        &quot;item_id&quot;: &quot;444&quot;, // SKU记录行ID
+        &quot;shop_id&quot;: &quot;0&quot;, // 店铺ID
+        &quot;goods_id&quot;: &quot;1503691700013&quot;, // SPU ID
+        &quot;sku_id&quot;: &quot;437&quot;, // SKU ID
+        &quot;sku_count&quot;: &quot;3&quot;, // SKU 数量
+        &quot;sku_selected&quot;: &quot;Y&quot;, // SKU 是否选中，Y是，N否
+        &quot;cate_id&quot;: &quot;44&quot;, // SKU 二级分类ID
+        &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // SPU 名称
+        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4204913c51a77ce9f6c7a14e324135ab.jpg&quot;, // SPU 封面
+        &quot;sku_name&quot;: &quot;米白色（方头）,35&quot;, // SKU 名称
+        &quot;sku_price&quot;: &quot;3.00&quot;, // SKU 单售价
+        &quot;cps_fee&quot;: &quot;0.12&quot;, // SKU 单佣金
+        &quot;is_cross_border&quot;: &quot;N&quot;, // 是否是跨境商品，Y是，N否
+        &quot;is_soldout&quot;: &quot;N&quot;, // 是否已售罄，Y是，N否
+        &quot;stock&quot;: &quot;10000&quot;, // 库存数量
+        &quot;state&quot;: &quot;1&quot;, // 上下架状态，1已上架，0已下架
+        &quot;refuse_region&quot;: &quot;&quot;, // 禁售地区
+        &quot;freight_tpl_info&quot;: { // 运费模板信息
+          &quot;freight_tpl_id&quot;: &quot;23&quot;, // 模板ID
+          &quot;name&quot;: &quot;test01&quot;, // 模板名称
+          &quot;area_list&quot;: [ // 模板地区与运费列表，当模板ID&gt;1时有值，其他为空
+            {
+              &quot;id&quot;: &quot;28&quot;, // 关系ID
+              &quot;area&quot;: &quot;新疆维吾尔自治区-乌鲁木齐市,新疆维吾尔自治区-克拉玛依市,新疆维吾尔自治区-吐鲁番市&quot;, // 地区列表
+              &quot;fee&quot;: &quot;6.00&quot; // 当前地区列表范围内的运费金额
+            }
+          ]
+        },
+        &quot;merchant_id&quot;: &quot;50&quot;, // 供应商ID
+        &quot;gifts&quot;: [ // 赠品列表
+          {
+            &quot;gift_name&quot;: &quot;俊阳大哥&quot;, // 赠品名称
+            &quot;gift_cover&quot;: &quot;https://img.jjbangbang.com/test/image/871d88879f2d8f4ca5e285fd8bdbf8cf.jpg&quot;, // 赠品封面
+            &quot;gift_count&quot;: &quot;19988&quot; // 赠品数量
+          }
+        ],
+        &quot;is_forbid&quot;: &quot;N&quot;, // 当前收货地址内是否禁售
+        &quot;forbid_text&quot;: &quot;&quot; // 当前收货地址内禁售时的提示文案
+      }
+    ]
+  },
+  &quot;consume&quot;: 706,
+  &quot;time&quot;: 1606910944
+}
+</code></pre>
+<h3 id="样品订单列表">样品订单列表</h3>
+<p>调用场景：获取样品订单列表时，全部、待付款、待发货和待收货<br>接口地址：sampleOrder/listSampleOrderM<br>请求方式：GET<br>可选参数：4个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">state</td>
+<td align="left">0</td>
+<td align="left">订单流转状态：0.全部;1.待付款;2.待发货;3.待收货;默认0;</td>
+</tr>
+<tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量，默认0</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认10</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：  </p>
+<pre><code>{
+  &quot;code&quot;: 0, // 0正常，其他异常
+  &quot;msg&quot;: &quot;&quot;,
+  &quot;data&quot;: {
+    &quot;order_m&quot;: [ // 订单列表
+      {
+        &quot;sub_order_id&quot;: &quot;307371990001149&quot;, // 子订单ID（子订单标识）
+        &quot;addtime&quot;: &quot;2020-12-03 16:01:19&quot;, // 创建时间
+        &quot;finish_time&quot;: &quot;1970-01-01 00:00:00&quot;, // 完成时间
+        &quot;state_code&quot;: &quot;1301&quot;, // 订单流转状态
+        &quot;price&quot;: &quot;641.00&quot;, // 订单商品总金额
+        &quot;pay_price&quot;: &quot;641.00&quot;, // 订单商品总支付金额
+        &quot;has_sku_in_sold&quot;: &quot;N&quot;, // 是否有商品处于售后中，Y是，N否
+        &quot;seller_id&quot;: &quot;7&quot;, // 卖家ID
+        &quot;exists_express&quot;: &quot;Y&quot;, // 是否存在物流，Y是，N否
+        &quot;order_total_pay_price&quot;: &quot;646.00&quot;, // 订单总支付金额
+        &quot;shop_info&quot;: { // 店铺信息
+          &quot;name&quot;: &quot;俊阳小店&quot;, // 店铺名称
+          &quot;shop_id&quot;: &quot;2&quot; // 店铺ID
+        },
+        &quot;sku_m&quot;: [ // SKU 列表
+          {
+            &quot;cate_id&quot;: &quot;44&quot;, // 二级分类ID
+            &quot;goods_id&quot;: &quot;1503691700013&quot;, // SPU ID
+            &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // SPU 名称
+            &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/881a75e81067d47b4468e5795fdb5412.jpg&quot;, // SPU 封面
+            &quot;sku_id&quot;: &quot;436&quot;, // SKU ID
+            &quot;sku_name&quot;: &quot;绿色（方头）,39&quot;, // SKU 名称
+            &quot;sku_count&quot;: &quot;1&quot;, // SKU 数量
+            &quot;sku_price&quot;: &quot;3.00&quot;, // SKU 单售价金额
+            &quot;pay_price&quot;: &quot;3.00&quot;, // SKU 实际支付金额
+            &quot;sold_state_code&quot;: &quot;0&quot;, // SKU 售后状态码
+            &quot;express_id&quot;: &quot;0&quot;, // 物流包裹ID
+            &quot;state_code&quot;: &quot;1701&quot;, // 商品流转状态码
+            &quot;gifts&quot;: [ // 赠品列表
+              {
+                &quot;gift_name&quot;: &quot;俊阳大哥&quot;, // 赠品名称
+                &quot;gift_cover&quot;: &quot;https://img.jjbangbang.com/test/image/871d88879f2d8f4ca5e285fd8bdbf8cf.jpg&quot;, // 赠品封面
+                &quot;gift_count&quot;: 1 // 赠品数量
+              }
+            ]
+          }
+        ]
+      },
+      {
+        &quot;order_id&quot;: &quot;207371990001212&quot;, // 主订单ID（主订单标识）
+        &quot;addtime&quot;: &quot;2020-12-03 15:32:46&quot;, // 创建时间
+        &quot;state_code&quot;: &quot;1101&quot;, // 订单状态码
+        &quot;price&quot;: &quot;641.00&quot;, // 订单商品总金额
+        &quot;pay_price&quot;: &quot;641.00&quot;, // 订单商品总支付金额
+        &quot;seller_id&quot;: &quot;7&quot;, // 卖家ID
+        &quot;order_total_price&quot;: &quot;646.00&quot;, // 订单总金额
+        &quot;shop_info&quot;: { // 店铺信息
+          &quot;name&quot;: &quot;俊阳小店&quot;, // 店铺名称
+          &quot;shop_id&quot;: &quot;2&quot; // 店铺ID
+        },
+        &quot;sku_m&quot;: [ // SKU 列表
+          {
+            &quot;cate_id&quot;: &quot;44&quot;, // 二级分类ID
+            &quot;goods_id&quot;: &quot;1503691700013&quot;, // SPU ID
+            &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // SPU 名称
+            &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/881a75e81067d47b4468e5795fdb5412.jpg&quot;, // SPU 封面
+            &quot;sku_id&quot;: &quot;436&quot;, // SKU ID
+            &quot;sku_name&quot;: &quot;绿色（方头）,39&quot;, // SKU 名称
+            &quot;sku_count&quot;: &quot;1&quot;, // SKU 数量
+            &quot;sku_price&quot;: &quot;3.00&quot;, // SKU 单售价金额
+            &quot;pay_price&quot;: &quot;3.00&quot;, // SKU 实际支付金额
+            &quot;sold_state_code&quot;: &quot;0&quot;, // SKU 售后状态码
+            &quot;express_id&quot;: &quot;0&quot;, // SKU 包裹ID
+            &quot;state_code&quot;: &quot;4101&quot;, // SKU 状态码
+            &quot;gifts&quot;: [ // 赠品列表
+              {
+                &quot;gift_name&quot;: &quot;俊阳大哥&quot;, // 赠品名称
+                &quot;gift_cover&quot;: &quot;https://img.jjbangbang.com/test/image/871d88879f2d8f4ca5e285fd8bdbf8cf.jpg&quot;, // 赠品封面
+                &quot;gift_count&quot;: 1 // 赠品数量
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    &quot;more&quot;: true,
+    &quot;offset&quot;: &quot;728&quot;
+  },
+  &quot;consume&quot;: 279,
+  &quot;time&quot;: 1606985709
+}
+</code></pre>
+<h4 id="取消样品主订单">取消样品主订单</h4>
+<p>调用场景：用户点击取消样品主订单时，适用于取消待支付样品订单<br>接口地址：sampleOrder/celSampleOrderS<br>请求方式：POST<br>必需参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">order_id</td>
+<td align="left">203368210000051</td>
+<td align="left">主订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：  </p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h4 id="样品主订单预支付信息">样品主订单预支付信息</h4>
+<p>调用场景：需要对未支付订单再次支付时<br>接口地址：sampleOrderPrepayInfo/getSampleOrderPrepayInfoS<br>请求方式：GET<br>必需参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">order_id</td>
+<td align="left">201368310000319</td>
+<td align="left">主订单ID</td>
+</tr>
+</tbody></table>
+<p>可选参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">pay_type</td>
+<td align="left">0</td>
+<td align="left">0或不传，则取下单时选择的支付方式；3微信支付，4支付宝支付</td>
+</tr>
+</tbody></table>
+<p>输出结果：  </p>
+<pre><code>{
+  &quot;code&quot;: 0, // 0正常，其他异常
+  &quot;msg&quot;: &quot;&quot;,
+  &quot;data&quot;: {
+    &quot;order_total_pay_price&quot;: &quot;10.04&quot;, // 订单总需（实）付金额
+    &quot;order_id&quot;: &quot;207371850001178&quot;, // 主订单ID
+    &quot;buyer_id&quot;: &quot;7&quot;, // 买家ID
+    &quot;pay_price&quot;: &quot;0.04&quot;, // 商品总需（实）付金额
+    &quot;pay_type&quot;: &quot;3&quot;, // 支付方式：1无平台；2余额支付；3微信-APP；4支付宝-APP；5微博；6微信-H5；7支付宝-H5；8微信-小程序；9微信-公众号
+    &quot;source&quot;: &quot;3&quot;, // 订单创建来源：1管理后台 巨鲸帮帮；2管理后台微博小店；3巨鲸帮帮达人Andorid应用端；4巨鲸帮帮达人iOS应用端；5微博小店（达人）；6巨鲸帮帮粉丝微信小程序端；7巨鲸帮帮粉丝H5；8微博小店（粉丝下单）；9一直播（粉丝下单）；10微博CPS；11一直播CPS
+    &quot;return_url&quot;: &quot;&quot;, // 跳转链接
+    &quot;prepay&quot;: {} // 支付参数信息，详见第三方支付文档，本字段仅对原始内容进行转发
+  },
+  &quot;consume&quot;: 740,
+  &quot;time&quot;: 1606385352
+}
+</code></pre>
+<h4 id="提醒发货">提醒发货</h4>
+<p>调用场景：提醒发货<br>接口地址：sampleOrderDeliveryRemind/addSampleOrderDeliveryRemindS<br>请求方式：POST<br>必需参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sub_order_id</td>
+<td align="left">301368350001004</td>
+<td align="left">子订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：  </p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h4 id="子订单物流列表">子订单物流列表</h4>
+<p>调用场景：查看子订单物流列表时<br>接口地址：subOrderExpress/listSubOrderExpressM<br>请求方式：GET<br>必需参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sub_order_id</td>
+<td align="left">301368310000912</td>
+<td align="left">子订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;expresses&quot;: [
+            {
+                &quot;express_id&quot;: &quot;291&quot;,
+                &quot;skus&quot;: [
+                    {
+                        &quot;cate_id&quot;: &quot;22&quot;,
+                        &quot;goods_id&quot;: &quot;1503688300003&quot;,
+                        &quot;goods_name&quot;: &quot;阔太太旗袍式连衣裙2020新款夏韩版中长款显瘦印花过膝大码a字裙&quot;,
+                        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/ca1c31cd10efa9091d9b7f4272eb3c11.jpg&quot;,
+                        &quot;sku_id&quot;: &quot;150&quot;,
+                        &quot;sku_name&quot;: &quot;红花 L&quot;,
+                        &quot;sku_price&quot;: &quot;155.00&quot;,
+                        &quot;sku_count&quot;: &quot;1&quot;
+                    }
+                ]
+            },
+            {
+                &quot;expresses_id&quot;: &quot;0&quot;,
+                &quot;skus&quot;: [
+                    {
+                        &quot;cate_id&quot;: &quot;22&quot;,
+                        &quot;goods_id&quot;: &quot;1503688300003&quot;,
+                        &quot;goods_name&quot;: &quot;阔太太旗袍式连衣裙2020新款夏韩版中长款显瘦印花过膝大码a字裙&quot;,
+                        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/2ce5594f6e6c5367b95ef768dbdeff74.jpg&quot;,
+                        &quot;sku_id&quot;: &quot;144&quot;,
+                        &quot;sku_name&quot;: &quot;蓝花 L&quot;,
+                        &quot;sku_price&quot;: &quot;155.00&quot;,
+                        &quot;sku_count&quot;: &quot;1&quot;
+                    }
+                ]
+            }
+        ]
+    },
+    &quot;consume&quot;: 152,
+    &quot;time&quot;: 1593577011
+}
+</code></pre>
+<h4 id="查看物流详情">查看物流详情</h4>
+<p>调用场景：查看物流详情<br>接口地址：express/getExpressS<br>请求方式：GET<br>必需参数：1个  </p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">express_id</td>
+<td align="left">19</td>
+<td align="left">物流ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;sub_order_id&quot;: &quot;383368610000021&quot;,
+        &quot;addtime&quot;: &quot;2020-06-17 16:53:37&quot;,
+        &quot;express_status&quot;: &quot;1&quot;,
+        &quot;express_company_code&quot;: &quot;yuantong&quot;,
+        &quot;express_company_name&quot;: &quot;圆通速递&quot;,
+        &quot;express_number&quot;: &quot;123&quot;,
+        &quot;express_info&quot;: [
+            {
+                &quot;time&quot;: &quot;2020-06-11 13:03:21&quot;,
+                &quot;ftime&quot;: &quot;2020-06-11 13:03:21&quot;,
+                &quot;context&quot;: &quot;向山小学对面快递之家妈妈驿站已发出自提短信,请上门自提,联系电话18196780181&quot;
+            },
+        ]
+    }
+}
+</code></pre>
+<h4 id="确认收货样品子订单">确认收货样品子订单</h4>
+<p>调用场景：对样品子订单确认收货时
+接口地址：sampleSubOrder/receivedSampleSubOrderS
+请求方式：POST
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sub_order_id</td>
+<td align="left">301368310000930</td>
+<td align="left">子订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h4 id="删除样品主订单">删除样品主订单</h4>
+<p>调用场景：用户点击删除样品主订单时
+接口地址：sampleOrder/delSampleOrderS
+请求方式：POST
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">order_id</td>
+<td align="left">238368670000064</td>
+<td align="left">主订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h4 id="退款原因列表">退款原因列表</h4>
+<p>调用场景：选择退款原因时
+接口地址：refundReason/listRefundReasonM
+请求方式：GET
+可选参数：4个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sub_order_id</td>
+<td align="left">0</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">goods_id</td>
+<td align="left">0</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">sku_id</td>
+<td align="left">0</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">cate_id</td>
+<td align="left">0</td>
+<td align="left">sku所属类目ID</td>
+</tr>
+</tbody></table>
+<p>参数说明：
+以上参数均可不传（或传0，等于不传），此时返回通用原因列表，适用于：批量售后
+对单个SKU进行售后时，以上参数必传</p>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;refund_reasons&quot;: [
+            {
+                &quot;refund_reason_id&quot;: &quot;1&quot;,
+                &quot;refund_reason_name&quot;: &quot;拍错/多拍/不想要&quot;
+            },
+        ]
+    }
+}
+</code></pre>
+<h4 id="创建售后样品订单">创建售后样品订单</h4>
+<p>调用场景：点击申请售后页的“提交”时
+接口地址：sampleSoldOrder/addSampleSoldOrderS
+请求方式：POST
+必需参数：3个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sub_order_id</td>
+<td align="left">301368310000936</td>
+<td align="left">子订单ID</td>
+</tr>
+<tr>
+<td align="left">skus</td>
+<td align="left">参考备注①</td>
+<td align="left">商品信息，JSON字符串</td>
+</tr>
+<tr>
+<td align="left">refund_reason_id</td>
+<td align="left">1</td>
+<td align="left">退款原因选项ID</td>
+</tr>
+</tbody></table>
+<p>可选参数：4个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">refund_type</td>
+<td align="left">1</td>
+<td align="left">申请售后类型：1.仅退款;2.退货退款;默认1;</td>
+</tr>
+<tr>
+<td align="left">remarks</td>
+<td align="left">别说废话，赶紧退款！</td>
+<td align="left">退款说明，默认：无</td>
+</tr>
+<tr>
+<td align="left">pictures</td>
+<td align="left">参考备注②</td>
+<td align="left">凭证图片，JSON字符串，默认&#39;[]&#39;</td>
+</tr>
+<tr>
+<td align="left">source</td>
+<td align="left">3</td>
+<td align="left">订单来源：3.达人Andorid应用端;4.达人iOS应用端;默认3;</td>
+</tr>
+</tbody></table>
+<p>备注①skus格式（以下展示了格式化之后的JSON字符串）：</p>
+<pre><code>[ //使用数组将订单中的所有商品进行包裹
+  { // 订单中的某个SKU，以SKU为单位，每个SKU一个对象
+    &quot;goods_id&quot;: 1, // sku对应的goods_id
+    &quot;sku_id&quot;: 2, // skuID
+  },
+]
+</code></pre>
+<p>备注②pictures格式（以下展示了格式化之后的JSON字符串）：</p>
+<pre><code>[ // 使用数组将凭证图片链接地址进行包裹
+  &quot;http://www.bigeyegroup.com/uploadfiles/image/20180929/20180929184608_33719.png&quot;, // 凭证图片地址链接
+]
+</code></pre>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;sold_id&quot;: &quot;18&quot;
+    }
+}
+</code></pre>
+<h4 id="样品售后订单列表">样品售后订单列表</h4>
+<p>调用场景：退款/售后选项卡中列表显示卖家所有售后订单时
+接口地址：sampleSoldOrder/listSampleSoldOrderM
+请求方式：GET
+可选参数：3个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认20</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;order_m&quot;: [
+            {
+                &quot;sold_id&quot;: &quot;4213691800018&quot;,
+                &quot;state_code&quot;: &quot;3010&quot;,
+                &quot;seller_id&quot;: &quot;0&quot;,
+                &quot;addtime&quot;: &quot;2020-07-15 21:03:09&quot;,
+                &quot;expire_time&quot;: &quot;2020-07-16 16:00:00&quot;,
+                &quot;shop_info&quot;: null,
+                &quot;sku_m&quot;: [
+                    {
+                        &quot;cate_id&quot;: &quot;21&quot;,
+                        &quot;goods_id&quot;: &quot;1503691700013&quot;,
+                        &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;,
+                        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4204913c51a77ce9f6c7a14e324135ab.jpg&quot;,
+                        &quot;sku_id&quot;: &quot;437&quot;,
+                        &quot;sku_name&quot;: &quot;米白色（方头） 35&quot;,
+                        &quot;sku_price&quot;: &quot;1.00&quot;,
+                        &quot;sku_count&quot;: &quot;1&quot;,
+                        &quot;sold_state_code&quot;: &quot;2201&quot;
+                    }
+                ]
+            }
+        ],
+        &quot;offset&quot;: 20,
+        &quot;more&quot;: false
+    },
+    &quot;consume&quot;: 136,
+    &quot;time&quot;: 1594818259
+}
+</code></pre>
+<h4 id="售后样品订单详情">售后样品订单详情</h4>
+<p>调用场景：查看售后样品订单详情时
+接口地址：sampleSoldOrder/getSampleSoldOrderS
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sold_id</td>
+<td align="left">30</td>
+<td align="left">售后订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+  &quot;code&quot;: 0, // 0正常，其他异常
+  &quot;msg&quot;: &quot;&quot;,
+  &quot;data&quot;: {
+    &quot;order_refund_amount&quot;: &quot;438.00&quot;, // 售后单总退款金额
+    &quot;buyer_id&quot;: &quot;7&quot;, // 买家ID
+    &quot;seller_id&quot;: &quot;7&quot;, // 卖家ID
+    &quot;sold_id&quot;: &quot;4133718300044&quot;, // 售后单ID
+    &quot;addtime&quot;: &quot;2020-11-25 14:56:09&quot;, // 创建时间
+    &quot;expire_time&quot;: &quot;2020-11-27 14:56:09&quot;, // 待处理过期时间
+    &quot;close_time&quot;: &quot;1970-01-01 00:00:00&quot;, // 关闭时间
+    &quot;refuse_time&quot;: &quot;1970-01-01 00:00:00&quot;, // 拒绝时间
+    &quot;success_time&quot;: &quot;2020-11-25 14:56:11&quot;, // 成功时间
+    &quot;state_code&quot;: &quot;3010&quot;, // 售后单流转状态码
+    &quot;refund_type&quot;: &quot;1&quot;, // 退款类型：1仅退款；2退货退款；
+    &quot;refund_reason_id&quot;: &quot;1&quot;, // 退款原因ID
+    &quot;refund_amount&quot;: &quot;438.00&quot;, // 退款金额
+    &quot;remarks&quot;: &quot;&quot;, // 退款说明
+    &quot;pictures&quot;: [ // 退款图片列表，最多3张
+      &quot;https://img.jjbangbang.com/goods/b9f33a7fca5cc9dee71ea593b4132ee7.jpg&quot; // 图片链接
+    ],
+    &quot;sold_express_id&quot;: &quot;0&quot;, // 售后物流ID
+    &quot;refund_reason_name&quot;: &quot;拍错/多拍/不想要&quot;, // 退款原因名称
+    &quot;judge&quot;: {
+      &quot;reason&quot;: &quot;付款未超过24小时，且商品未发货，{system}自动同意退款&quot;,
+      &quot;pictures&quot;: [
+        &quot;https://img.jjbangbang.com/goods/b9f33a7fca5cc9dee71ea593b4132ee7.jpg&quot;
+      ]
+    },
+    &quot;address&quot;: { // 售后收货地址信息
+      &quot;name&quot;: &quot;俊阳粉丝&quot;, // 收货人名称
+      &quot;phone&quot;: &quot;15210757705&quot;, // 收货人联系电话
+      &quot;region&quot;: &quot;河南省-洛阳市-嵩县&quot;, // 地区
+      &quot;address&quot;: &quot;一个小山沟里&quot; // 详细地址
+    },
+    &quot;sku_m&quot;: [ // SKU 列表
+      {
+        &quot;cate_id&quot;: &quot;44&quot;, // 二级类目ID
+        &quot;sub_order_id&quot;: &quot;307371830001113&quot;, // 子订单ID
+        &quot;goods_id&quot;: &quot;1503688300002&quot;, // SPU ID
+        &quot;goods_name&quot;: &quot;罗衣气质V领连衣裙女2020夏装新款优雅波点鱼尾摆包臀中长裙02008&quot;, // SPU 名称
+        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/5ac0c0e0f8723c617f1d628e21842771.jpg&quot;, // SPU 封面
+        &quot;sku_id&quot;: &quot;129&quot;, // SKU ID
+        &quot;sku_name&quot;: &quot;备选,2XL&quot;, // SKU 名称
+        &quot;sku_price&quot;: &quot;638.00&quot;, // SKU 单价
+        &quot;pay_price&quot;: &quot;638.00&quot;, // SKU 实（需）付金额
+        &quot;sku_count&quot;: &quot;1&quot;, // SKU 数量
+        &quot;sold_state_code&quot;: &quot;2201&quot;, // SKU 售后流转状态码
+        &quot;available_refund_amount&quot;: &quot;0.00&quot;, // SKU 可用退款金额
+        &quot;gifts&quot;: [ // SKU 赠品列表，如果该SKU没有赠品，此字段为空array
+          {
+            &quot;gift_name&quot;: &quot;缔葭DIJIA城市橘色腮红粉元气正品裸妆自然修容高光一体盘晒红女&quot;, // 赠品名称
+            &quot;gift_cover&quot;: &quot;https://img.jjbangbang.com/goods/c62796eadced370ab8cc0fc2396663f8.jpg&quot;, // 赠品封面
+            &quot;gift_count&quot;: &quot;1&quot; // 赠品数量
+          }
+        ],
+        &quot;freight_tpl_id&quot;: &quot;1&quot;, // 运费模板ID
+        &quot;available_refund_fee&quot;: &quot;0.00&quot; // 运费模板可退总金额
+      }
+    ]
+  },
+  &quot;consume&quot;: 130,
+  &quot;time&quot;: 1606391696
+}
+</code></pre>
+<h4 id="撤销售后样品订单">撤销售后样品订单</h4>
+<p>调用场景：撤销售后样品订单
+接口地址：sampleSoldOrder/celSampleSoldOrderS
+请求方式：POST
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sold_id</td>
+<td align="left">30</td>
+<td align="left">售后订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h4 id="修改售后样品订单">修改售后样品订单</h4>
+<p>调用场景：修改售后申请保存时
+接口地址：sampleSoldOrder/setSampleSoldOrderS
+请求方式：POST
+必需参数：4个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sold_id</td>
+<td align="left">30</td>
+<td align="left">售后订单ID</td>
+</tr>
+<tr>
+<td align="left">sub_order_id</td>
+<td align="left">301368310000936</td>
+<td align="left">子订单ID</td>
+</tr>
+<tr>
+<td align="left">skus</td>
+<td align="left">参考备注①</td>
+<td align="left">商品信息，JSON字符串</td>
+</tr>
+<tr>
+<td align="left">refund_reason_id</td>
+<td align="left">1</td>
+<td align="left">退款原因选项ID</td>
+</tr>
+</tbody></table>
+<p>可选参数：4个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">refund_type</td>
+<td align="left">1</td>
+<td align="left">申请售后类型：1.仅退款;2.退货退款;默认1;</td>
+</tr>
+<tr>
+<td align="left">remarks</td>
+<td align="left">别说废话，赶紧退款！</td>
+<td align="left">退款说明，默认：无</td>
+</tr>
+<tr>
+<td align="left">pictures</td>
+<td align="left">参考备注②</td>
+<td align="left">凭证图片，JSON字符串，默认&#39;[]&#39;</td>
+</tr>
+<tr>
+<td align="left">source</td>
+<td align="left">3</td>
+<td align="left">订单来源：3.达人Andorid应用端;4.达人iOS应用端;默认3;</td>
+</tr>
+</tbody></table>
+<p>备注①skus格式（以下展示了格式化之后的JSON字符串）：</p>
+<pre><code>[ //使用数组将订单中的所有商品进行包裹
+  { // 订单中的某个SKU，以SKU为单位，每个SKU一个对象
+    &quot;goods_id&quot;: 1, // sku对应的goods_id
+    &quot;sku_id&quot;: 2, // skuID
+  },
+]
+</code></pre>
+<p>备注②pictures格式（以下展示了格式化之后的JSON字符串）：</p>
+<pre><code>[ // 使用数组将凭证图片链接地址进行包裹
+  &quot;http://www.bigeyegroup.com/uploadfiles/image/20180929/20180929184608_33719.png&quot;, // 凭证图片地址链接
+]
+</code></pre>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;sold_id&quot;: 17
+    }
+}
+</code></pre>
+<h4 id="获取订单收货地址">获取订单收货地址</h4>
+<p>调用场景：售后发货时
+接口地址：receivedAddress/getReceivedAddressS
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sub_order_id</td>
+<td align="left">301368320000981</td>
+<td align="left">子订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;address&quot;: {
+            &quot;name&quot;: &quot;大眼&quot;,
+            &quot;phone&quot;: &quot;15210858894&quot;,
+            &quot;region&quot;: &quot;北京市朝阳区&quot;,
+            &quot;address&quot;: &quot;高碑店东亿传媒产业园D4号楼101室&quot;,
+            &quot;sub_order_id&quot;: 338368430000096
+        }
+    }
+}
+</code></pre>
+<h4 id="售后样品订单发货">售后样品订单发货</h4>
+<p>调用场景：售后样品订单发货
+接口地址：sampleSoldOrderExpress/addSampleSoldOrderExpressS
+请求方式：POST
+必需参数：5个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sold_id</td>
+<td align="left">30</td>
+<td align="left">售后订单ID</td>
+</tr>
+<tr>
+<td align="left">express_number</td>
+<td align="left">SF912761398</td>
+<td align="left">快递单号</td>
+</tr>
+<tr>
+<td align="left">express_company_code</td>
+<td align="left">shunfengsuyun</td>
+<td align="left">快递公司编码</td>
+</tr>
+<tr>
+<td align="left">express_company_name</td>
+<td align="left">顺丰速运</td>
+<td align="left">快递公司名称</td>
+</tr>
+<tr>
+<td align="left">phone</td>
+<td align="left">1383627263726</td>
+<td align="left">联系电话，需要保存到售后表里</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h4 id="售后样品订单申请官方介入">售后样品订单申请官方介入</h4>
+<p>调用场景：售后样品详情点击“申请平台介入”时
+接口地址：sampleSoldOrderOfficial/addSampleSoldOrderOfficialS
+请求方式：POST
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sold_id</td>
+<td align="left">30</td>
+<td align="left">售后订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+<h4 id="协商历史">协商历史</h4>
+<p>调用场景：查看某个售后单的协商历史信息</p>
+<p>由于各端展示数据的时候有一些个性化显示，因此，服务器在存储数据的时候对个性化部分使用占位符进行了替换处理。各端在获取接口数据之后，需要按照各端的逻辑使用相关数据替换为自己的相关文案。接口数据涉及到的一些占位符即意义：</p>
+<p>对于action_name,message_info字段中的内容，按下列规则替换即可</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型ID</th>
+<th align="left">类型替换文本占位符</th>
+<th align="left">类型释义</th>
+<th align="left">APP端展示</th>
+<th align="left">小程序端展示</th>
+<th align="left">商家端展示</th>
+<th align="left">运营后台展示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">{system}</td>
+<td align="left">系统标识站位符</td>
+<td align="left">系统</td>
+<td align="left">系统</td>
+<td align="left">系统</td>
+<td align="left">系统</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">{admin}</td>
+<td align="left">管理员标识占位符</td>
+<td align="left">平台</td>
+<td align="left">平台</td>
+<td align="left">平台</td>
+<td align="left">平台</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">{merchant}</td>
+<td align="left">供应商标识占位符</td>
+<td align="left">商家</td>
+<td align="left">商家</td>
+<td align="left">供应商</td>
+<td align="left">供应商</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">{seller}</td>
+<td align="left">卖家标识占位符</td>
+<td align="left">商家</td>
+<td align="left">商家</td>
+<td align="left">卖家</td>
+<td align="left">卖家</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">{buyer}</td>
+<td align="left">买家标识占位符</td>
+<td align="left">买家</td>
+<td align="left">买家</td>
+<td align="left">买家</td>
+<td align="left">买家</td>
+</tr>
+</tbody></table>
+<p>对于操作人，即之前的nickname字段，根据type判断角色，如果需要个性化展示，直接取oname字段的值即可。</p>
+<p>接口地址：soldOrderRecord/listSoldOrderRecordM
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sold_id</td>
+<td align="left">32</td>
+<td align="left">售后订单ID</td>
+</tr>
+</tbody></table>
+<p>可选参数：3个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量，默认0</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认20</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;sold_records&quot;: [
+            {
+                &quot;addtime&quot;: &quot;2020-07-08 21:41:32&quot;,
+                &quot;type&quot;: &quot;5&quot;,
+                &quot;oname&quot;: &quot;152****701&quot;,
+                &quot;avatar_url&quot;: &quot;https://img.jjbangbang.com/jjbb-avatar.png&quot;,
+                &quot;action_name&quot;: &quot;{buyer}发起了售后申请&quot;,
+                &quot;message_info&quot;: [
+                    {
+                        &quot;key&quot;: &quot;退款金额&quot;,
+                        &quot;value&quot;: &quot;{refund_amount}&quot;,
+                        &quot;canCopy&quot;: false
+                    },
+                ],
+                &quot;pictures&quot;: [
+                    &quot;https://img.jjbangbang.com/image/52cc718146cfcab5564b54bba24dda1a.jpg&quot;
+                ]
+            }
+        ],
+        &quot;offset&quot;: 200,
+        &quot;more&quot;: false,
+        &quot;refund_amount&quot;: &quot;155.00&quot;
+    },
+    &quot;consume&quot;: 72,
+    &quot;time&quot;: 1594215895
+}
+</code></pre>
+<h4 id="售后订单物流列表">售后订单物流列表</h4>
+<p>调用场景：查看售后订单物流列表时
+接口地址：soldOrderExpress/listSoldOrderExpressM
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sold_id</td>
+<td align="left">32</td>
+<td align="left">售后单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;expresses&quot;: [
+            {
+                &quot;express_id&quot;: &quot;15&quot;,
+                &quot;skus&quot;: [
+                    {
+                        &quot;cate_id&quot;: &quot;0&quot;,
+                        &quot;goods_id&quot;: &quot;1043682900084&quot;,
+                        &quot;goods_name&quot;: &quot;缔葭DIJIA城市橘色腮红粉元气正品裸妆自然修容高光一体盘晒红女&quot;,
+                        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/c62796eadced370ab8cc0fc2396663f8.jpg&quot;,
+                        &quot;sku_id&quot;: &quot;4523&quot;,
+                        &quot;sku_name&quot;: &quot;杭州北山秋色13 焦糖棕&quot;,
+                        &quot;sku_price&quot;: &quot;100.0000&quot;,
+                        &quot;sku_count&quot;: &quot;2&quot;
+                    },
+                ]
+            }
+        ]
+    }
+}
+</code></pre>
+<h4 id="店铺销售订单列表">店铺销售订单列表</h4>
+<p>调用场景：获取店铺销售订单列表时，全部、待付款、待发货和待收货
+接口地址：shopOrder/listShopOrderM
+请求方式：GET
+可选参数：4个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">state</td>
+<td align="left">0</td>
+<td align="left">订单流转状态：0.全部;1.待付款;2.待发货;3.待收货;默认0;</td>
+</tr>
+<tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量，默认0</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认20</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+  &quot;code&quot;: 0, // 0正常，其他异常
+  &quot;msg&quot;: &quot;&quot;,
+  &quot;data&quot;: {
+    &quot;order_m&quot;: [ // 订单列表
+      {
+        &quot;sub_order_id&quot;: &quot;307371990001149&quot;, // 子订单ID（子订单标识）
+        &quot;addtime&quot;: &quot;2020-12-03 16:01:19&quot;, // 创建时间
+        &quot;finish_time&quot;: &quot;1970-01-01 00:00:00&quot;, // 完成时间
+        &quot;state_code&quot;: &quot;1301&quot;, // 订单流转状态
+        &quot;price&quot;: &quot;641.00&quot;, // 订单商品总金额
+        &quot;pay_price&quot;: &quot;641.00&quot;, // 订单商品总支付金额
+        &quot;has_sku_in_sold&quot;: &quot;N&quot;, // 是否有商品处于售后中，Y是，N否
+        &quot;seller_id&quot;: &quot;7&quot;, // 卖家ID
+        &quot;exists_express&quot;: &quot;Y&quot;, // 是否存在物流，Y是，N否
+        &quot;order_total_pay_price&quot;: &quot;646.00&quot;, // 订单总支付金额
+        &quot;shop_info&quot;: { // 店铺信息
+          &quot;name&quot;: &quot;俊阳小店&quot;, // 店铺名称
+          &quot;shop_id&quot;: &quot;2&quot; // 店铺ID
+        },
+        &quot;sku_m&quot;: [ // SKU 列表
+          {
+            &quot;cate_id&quot;: &quot;44&quot;, // 二级分类ID
+            &quot;goods_id&quot;: &quot;1503691700013&quot;, // SPU ID
+            &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // SPU 名称
+            &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/881a75e81067d47b4468e5795fdb5412.jpg&quot;, // SPU 封面
+            &quot;sku_id&quot;: &quot;436&quot;, // SKU ID
+            &quot;sku_name&quot;: &quot;绿色（方头）,39&quot;, // SKU 名称
+            &quot;sku_count&quot;: &quot;1&quot;, // SKU 数量
+            &quot;sku_price&quot;: &quot;3.00&quot;, // SKU 单售价金额
+            &quot;pay_price&quot;: &quot;3.00&quot;, // SKU 实际支付金额
+            &quot;sold_state_code&quot;: &quot;0&quot;, // SKU 售后状态码
+            &quot;express_id&quot;: &quot;0&quot;, // 物流包裹ID
+            &quot;state_code&quot;: &quot;1701&quot;, // 商品流转状态码
+            &quot;gifts&quot;: [ // 赠品列表
+              {
+                &quot;gift_name&quot;: &quot;俊阳大哥&quot;, // 赠品名称
+                &quot;gift_cover&quot;: &quot;https://img.jjbangbang.com/test/image/871d88879f2d8f4ca5e285fd8bdbf8cf.jpg&quot;, // 赠品封面
+                &quot;gift_count&quot;: 1 // 赠品数量
+              }
+            ]
+          }
+        ],
+        &quot;income&quot;: 0.12 // 订单预估收益金额
+      },
+      {
+        &quot;order_id&quot;: &quot;207371990001212&quot;, // 主订单ID（主订单标识）
+        &quot;addtime&quot;: &quot;2020-12-03 15:32:46&quot;, // 创建时间
+        &quot;state_code&quot;: &quot;1101&quot;, // 订单状态码
+        &quot;price&quot;: &quot;641.00&quot;, // 订单商品总金额
+        &quot;pay_price&quot;: &quot;641.00&quot;, // 订单商品总支付金额
+        &quot;seller_id&quot;: &quot;7&quot;, // 卖家ID
+        &quot;order_total_price&quot;: &quot;646.00&quot;, // 订单总金额
+        &quot;shop_info&quot;: { // 店铺信息
+          &quot;name&quot;: &quot;俊阳小店&quot;, // 店铺名称
+          &quot;shop_id&quot;: &quot;2&quot; // 店铺ID
+        },
+        &quot;sku_m&quot;: [ // SKU 列表
+          {
+            &quot;cate_id&quot;: &quot;44&quot;, // 二级分类ID
+            &quot;goods_id&quot;: &quot;1503691700013&quot;, // SPU ID
+            &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // SPU 名称
+            &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/881a75e81067d47b4468e5795fdb5412.jpg&quot;, // SPU 封面
+            &quot;sku_id&quot;: &quot;436&quot;, // SKU ID
+            &quot;sku_name&quot;: &quot;绿色（方头）,39&quot;, // SKU 名称
+            &quot;sku_count&quot;: &quot;1&quot;, // SKU 数量
+            &quot;sku_price&quot;: &quot;3.00&quot;, // SKU 单售价金额
+            &quot;pay_price&quot;: &quot;3.00&quot;, // SKU 实际支付金额
+            &quot;sold_state_code&quot;: &quot;0&quot;, // SKU 售后状态码
+            &quot;express_id&quot;: &quot;0&quot;, // SKU 包裹ID
+            &quot;state_code&quot;: &quot;4101&quot;, // SKU 状态码
+            &quot;gifts&quot;: [ // 赠品列表
+              {
+                &quot;gift_name&quot;: &quot;俊阳大哥&quot;, // 赠品名称
+                &quot;gift_cover&quot;: &quot;https://img.jjbangbang.com/test/image/871d88879f2d8f4ca5e285fd8bdbf8cf.jpg&quot;, // 赠品封面
+                &quot;gift_count&quot;: 1 // 赠品数量
+              }
+            ]
+          }
+        ],
+        &quot;income&quot;: 127.72 // 订单预估收益金额
+      }
+    ],
+    &quot;more&quot;: true,
+    &quot;offset&quot;: &quot;728&quot;
+  },
+  &quot;consume&quot;: 279,
+  &quot;time&quot;: 1606985709
+}
+</code></pre>
+<h4 id="店铺主订单详情">店铺主订单详情</h4>
+<p>调用场景：需要获取某个店铺主订单的详细信息时，仅适用于待支付订单详情（主订单）
+接口地址：shopOrder/getShopOrderS
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">order_id</td>
+<td align="left">201368290000250</td>
+<td align="left">主订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;order_id&quot;: &quot;210369180000267&quot;,
+        &quot;addtime&quot;: &quot;2020-07-15 21:08:23&quot;,
+        &quot;state_code&quot;: &quot;1101&quot;,
+        &quot;price&quot;: &quot;2.00&quot;,
+        &quot;expire_time&quot;: &quot;2020-07-15 21:28:23&quot;,
+        &quot;is_cross_border&quot;: &quot;N&quot;,
+        &quot;seller_id&quot;: &quot;7&quot;,
+        &quot;adress&quot;: {
+            &quot;name&quot;: &quot;俊阳粉丝&quot;,
+            &quot;phone&quot;: &quot;152****7702&quot;,
+            &quot;region&quot;: &quot;河南省-洛阳市-嵩县&quot;,
+            &quot;real_name&quot;: &quot;大眼&quot;,
+            &quot;id_card&quot;: &quot;410923837182374618X&quot;,
+            &quot;address&quot;: &quot;一个小山沟里&quot;
+        },
+        &quot;shop_info&quot;: {
+            &quot;name&quot;: &quot;俊阳小店&quot;,
+            &quot;shop_id&quot;: &quot;2&quot;
+        },
+        &quot;sku_m&quot;: [
+            {
+                &quot;cate_id&quot;: &quot;21&quot;,
+                &quot;goods_id&quot;: &quot;1503691700013&quot;,
+                &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;,
+                &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4204913c51a77ce9f6c7a14e324135ab.jpg&quot;,
+                &quot;sku_id&quot;: &quot;437&quot;,
+                &quot;sku_name&quot;: &quot;米白色（方头） 35&quot;,
+                &quot;sku_price&quot;: &quot;2.00&quot;,
+                &quot;sku_count&quot;: &quot;1&quot;,
+                &quot;sold_state_code&quot;: &quot;0&quot;
+            }
+        ]
+    },
+    &quot;consume&quot;: 110,
+    &quot;time&quot;: 1594991512
+}
+</code></pre>
+<h4 id="店铺子订单详情">店铺子订单详情</h4>
+<p>调用场景：需要获取某个店铺子订单的详细信息时，适用于非待支付订单详情（子订单）
+接口地址：shopSubOrder/getShopSubOrderS
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sub_order_id</td>
+<td align="left">301368290000596</td>
+<td align="left">子订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;sub_order_id&quot;: &quot;310369180000281&quot;,
+        &quot;addtime&quot;: &quot;2020-07-15 20:28:22&quot;,
+        &quot;state_code&quot;: &quot;1601&quot;,
+        &quot;price&quot;: &quot;2.00&quot;,
+        &quot;is_cross_border&quot;: &quot;N&quot;,
+        &quot;has_sku_in_sold&quot;: &quot;N&quot;,
+        &quot;seller_id&quot;: &quot;7&quot;,
+        &quot;exists_express&quot;: &quot;N&quot;,
+        &quot;exists_not_delivered_sku&quot;: &quot;Y&quot;,
+        &quot;address&quot;: {
+            &quot;name&quot;: &quot;俊阳粉丝&quot;,
+            &quot;phone&quot;: &quot;152****7702&quot;,
+            &quot;region&quot;: &quot;河南省-洛阳市-嵩县&quot;,
+            &quot;address&quot;: &quot;一个小山沟里&quot;,
+            &quot;real_name&quot;: &quot;大眼&quot;,
+            &quot;id_card&quot;: &quot;410923837182374618X&quot;
+        },
+        &quot;shop_info&quot;: {
+            &quot;name&quot;: &quot;俊阳小店&quot;,
+            &quot;shop_id&quot;: &quot;2&quot;
+        },
+        &quot;sku_m&quot;: [
+            {
+                &quot;cate_id&quot;: &quot;21&quot;,
+                &quot;id&quot;: &quot;28&quot;,
+                &quot;goods_id&quot;: &quot;1503691700013&quot;,
+                &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;,
+                &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4204913c51a77ce9f6c7a14e324135ab.jpg&quot;,
+                &quot;sku_id&quot;: &quot;437&quot;,
+                &quot;sku_name&quot;: &quot;米白色（方头） 35&quot;,
+                &quot;sku_price&quot;: &quot;2.00&quot;,
+                &quot;sku_count&quot;: &quot;1&quot;,
+                &quot;state_code&quot;: &quot;2001&quot;,
+                &quot;sold_state_code&quot;: &quot;2201&quot;,
+                &quot;sold_expire_time&quot;: &quot;1970-01-01 00:00:00&quot;,
+                &quot;sold_id&quot;: &quot;4813691800007&quot;,
+                &quot;express_id&quot;: &quot;0&quot;
+            }
+        ]
+    },
+    &quot;consume&quot;: 129,
+    &quot;time&quot;: 1594818852
+}
+</code></pre>
+<h4 id="店铺售后订单列表">店铺售后订单列表</h4>
+<p>调用场景：退款/售后选项卡中列表显示店铺所有售后订单时
+接口地址：shopSoldOrder/listShopSoldOrderM
+请求方式：GET
+可选参数：3个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认20</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;order_m&quot;: [
+            {
+                &quot;sold_id&quot;: &quot;4833691800023&quot;,
+                &quot;state_code&quot;: &quot;2401&quot;,
+                &quot;seller_id&quot;: &quot;7&quot;,
+                &quot;addtime&quot;: &quot;2020-07-15 21:20:10&quot;,
+                &quot;expire_time&quot;: &quot;2020-07-16 16:00:00&quot;,
+                &quot;shop_info&quot;: {
+                    &quot;name&quot;: &quot;俊阳小店&quot;,
+                    &quot;shop_id&quot;: &quot;2&quot;
+                },
+                &quot;sku_m&quot;: [
+                    {
+                        &quot;cate_id&quot;: &quot;21&quot;,
+                        &quot;goods_id&quot;: &quot;1503691700013&quot;,
+                        &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;,
+                        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4204913c51a77ce9f6c7a14e324135ab.jpg&quot;,
+                        &quot;sku_id&quot;: &quot;437&quot;,
+                        &quot;sku_name&quot;: &quot;米白色（方头） 35&quot;,
+                        &quot;sku_price&quot;: &quot;2.00&quot;,
+                        &quot;sku_count&quot;: &quot;1&quot;,
+                        &quot;sold_state_code&quot;: &quot;2101&quot;
+                    }
+                ]
+            },
+        ],
+        &quot;offset&quot;: 20,
+        &quot;more&quot;: false
+    },
+    &quot;consume&quot;: 278,
+    &quot;time&quot;: 1594819298
+}
+</code></pre>
+<h4 id="店铺售后订单详情">店铺售后订单详情</h4>
+<p>调用场景：查看店铺售后订单详情时
+接口地址：shopSoldOrder/getShopSoldOrderS
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sold_id</td>
+<td align="left">30</td>
+<td align="left">售后订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;seller_id&quot;: &quot;7&quot;,
+        &quot;sold_id&quot;: &quot;4833691800023&quot;,
+        &quot;addtime&quot;: &quot;2020-07-15 21:20:10&quot;,
+        &quot;expire_time&quot;: &quot;2020-07-16 16:00:00&quot;,
+        &quot;close_time&quot;: &quot;1970-01-01 00:00:00&quot;,
+        &quot;refuse_time&quot;: &quot;1970-01-01 00:00:00&quot;,
+        &quot;success_time&quot;: &quot;1970-01-01 00:00:00&quot;,
+        &quot;state_code&quot;: &quot;2401&quot;,
+        &quot;refund_type&quot;: &quot;1&quot;,
+        &quot;refund_reason_id&quot;: &quot;1&quot;,
+        &quot;refund_amount&quot;: &quot;2.00&quot;,
+        &quot;remarks&quot;: &quot;无&quot;,
+        &quot;pictures&quot;: [],
+        &quot;sold_express_id&quot;: &quot;0&quot;,
+        &quot;refund_reason_name&quot;: &quot;拍错/多拍/不想要&quot;,
+        &quot;judge&quot;: null,
+        &quot;address&quot;: null,
+        &quot;sku_m&quot;: [
+            {
+                &quot;cate_id&quot;: &quot;21&quot;,
+                &quot;sub_order_id&quot;: &quot;310369180000283&quot;,
+                &quot;goods_id&quot;: &quot;1503691700013&quot;,
+                &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;,
+                &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4204913c51a77ce9f6c7a14e324135ab.jpg&quot;,
+                &quot;sku_id&quot;: &quot;437&quot;,
+                &quot;sku_name&quot;: &quot;米白色（方头） 35&quot;,
+                &quot;sku_price&quot;: &quot;2.00&quot;,
+                &quot;sku_count&quot;: &quot;1&quot;,
+                &quot;sold_state_code&quot;: &quot;2101&quot;
+            }
+        ]
+    },
+    &quot;consume&quot;: 138,
+    &quot;time&quot;: 1594819495
+}
+</code></pre>
+<h4 id="我的">我的</h4>
+<p>调用场景：我的样品订单统计气泡：待付款、待发货、待收货
+接口地址：mySampleOrderInfo/getMySampleOrderInfoS
+请求方式：GET
+输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;unpaid_count&quot;: 14,
+        &quot;unshipped_count&quot;: 15,
+        &quot;not_recived_count&quot;: 0
+    }
+}
+</code></pre>
+<h4 id="店铺首页数据">店铺首页数据</h4>
+<p>调用场景：店铺数据首页
+接口地址：shopIndexData/getShopIndexDataS
+请求方式：GET
+输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;yesterday&quot;: { // 昨日数据
+            &quot;income&quot;: &quot;445.0000&quot;, // 收益
+            &quot;sale_amount&quot;: &quot;831.0000&quot;, // 销售额
+            &quot;order_quantity&quot;: &quot;822&quot; // 订单量
+        },
+        &quot;today&quot;: { // 当天实时数据
+            &quot;income&quot;: 0,
+            &quot;sale_amount&quot;: 0,
+            &quot;order_quantity&quot;: 4
+        }
+    }
+}
+</code></pre>
+<h4 id="店铺日销售数据">店铺日销售数据</h4>
+<p>调用场景：日数据
+接口地址：shopDayData/listShopDayDataM
+请求方式：GET
+可选参数：3个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量，默认0</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认10</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;data&quot;: [
+            {
+                &quot;day&quot;: &quot;2020-05-20&quot;, // 日期
+                &quot;income&quot;: &quot;952.0000&quot;, // 收益
+                &quot;sale_amount&quot;: &quot;6.0000&quot;, // 销售额
+                &quot;order_quantity&quot;: &quot;176&quot; // 订单量
+            },
+        ],
+        &quot;offset&quot;: 10,
+        &quot;more&quot;: true
+    }
+}
+</code></pre>
+<h4 id="店铺月销售数据">店铺月销售数据</h4>
+<p>调用场景：月数据
+接口地址：shopMonthData/listShopMonthDataM
+请求方式：GET
+可选参数：3个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量，默认0</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认10</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;data&quot;: [
+            {
+                &quot;month&quot;: &quot;2018-01&quot;,  // 月份
+                &quot;income&quot;: &quot;481.0000&quot;, // 收益
+                &quot;sale_amount&quot;: &quot;152.0000&quot;, // 销售额
+                &quot;order_quantity&quot;: &quot;319&quot; // 订单量
+            },
+        ],
+        &quot;offset&quot;: 10,
+        &quot;more&quot;: true
+    }
+}
+</code></pre>
+<h4 id="快递公司列表">快递公司列表</h4>
+<p>调用场景：选择快递公司时
+接口地址：expressCompanyName/listExpressCompanyNameM
+请求方式：GET
+输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;express_companies&quot;: [
+            {
+                &quot;express_company_code&quot;: &quot;zhongtong&quot;,
+                &quot;express_company_name&quot;: &quot;中通快递&quot;
+            },
+        ]
+    }
+}
+</code></pre>
+<h4 id="快递单号智能匹配快递公司">快递单号智能匹配快递公司</h4>
+<p>调用场景：填写单号时
+接口地址：expressCompanyName/matchExpressCompanyNameM
+请求方式：POST
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">express_number</td>
+<td align="left">12345678</td>
+<td align="left">快递单号</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;express_companies&quot;: [
+            {
+                &quot;express_company_code&quot;: &quot;zhongtong&quot;,
+                &quot;express_company_name&quot;: &quot;中通快递&quot;
+            },
+        ]
+    }
+}
+</code></pre>
+<h4 id="服务器当前时间">服务器当前时间</h4>
+<p>调用场景：校对时间，用于客户端自己处理倒计时
+接口地址：serverCurrentTime/getServerCurrentTimeS
+请求方式：GET
+输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {},
+    &quot;consume&quot;: 0,
+    &quot;time&quot;: 1594634407 // 服务器当前时间戳
+}
+</code></pre>
+<h4 id="未支付订单倒计时结束回调">未支付订单倒计时结束回调</h4>
+<p>调用场景：未支付订单倒计时结束时请求
+接口地址：unpaidOrderTimeoutEvent/triggerUnpaidOrderTimeoutEventS
+请求方式：POST
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">order_id</td>
+<td align="left">210369170000257</td>
+<td align="left">主订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0, // 0正常，其他异常
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {},
+    &quot;consume&quot;: 0,
+    &quot;time&quot;: 1594634407
+}
+</code></pre>
+<h4 id="售后订单倒计时结束回调">售后订单倒计时结束回调</h4>
+<p>调用场景：售后订单倒计时结束时请求
+接口地址：soldOrderTimeoutEvent/triggerSoldOrderTimeoutEventS
+请求方式：POST
+必需参数：2个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sold_id</td>
+<td align="left">4833691800023</td>
+<td align="left">售后单ID</td>
+</tr>
+<tr>
+<td align="left">state_code</td>
+<td align="left">2401</td>
+<td align="left">售后单状态码</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0, // 0正常，其他异常
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {},
+    &quot;consume&quot;: 0,
+    &quot;time&quot;: 1594634407
+}
+</code></pre>
+<h4 id="店铺日销售业绩订单列表">店铺日销售业绩订单列表</h4>
+<p>调用场景：点击某个日的销售业绩跳转
+接口地址：ShopDaySaleSubOrder/listShopDaySaleSubOrderM
+请求方式：GET
+必选参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">day</td>
+<td align="left">2020-08-25</td>
+<td align="left">某一个天，yyyy-MM-dd格式，/^\d{4}-\d{2}-\d{2}$/</td>
+</tr>
+</tbody></table>
+<p>可选参数：3个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认10</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0, // 0正常，其他异常
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;income&quot;: &quot;3.00&quot;, // 当前日期的总预估收益
+        &quot;more&quot;: false, // 是否含有下一页
+        &quot;offset&quot;: &quot;608&quot;, // 下一页偏移量（当more是true时有效）
+        &quot;order_m&quot;: [ // 订单列表，没有数据时返回空列表
+            {
+                &quot;sub_order_id&quot;: &quot;306369990000220&quot;, // 子订单ID，跳转子订单详情时用，当前返回的只有子订单
+                &quot;addtime&quot;: &quot;2020-08-25 15:30:55&quot;, // 创建时间
+                &quot;state_code&quot;: &quot;1401&quot;, // 订单状态码
+                &quot;price&quot;: &quot;2.00&quot;, // 订单金额
+                &quot;pay_price&quot;: &quot;2.00&quot;, // 订单实际支付金额
+                &quot;sku_m&quot;: [ // 订单中SKU列表
+                    {
+                        &quot;goods_id&quot;: &quot;1043699900120&quot;, // 商品ID
+                        &quot;goods_name&quot;: &quot;KINGPOWER泰国冬阴功一体式汤料100g*5王权免税同款轻松做大厨&quot;, // 商品名称
+                        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/44dba7f0b035e77ab4275e3733767ce1.jpg&quot;, // 商品封面
+                        &quot;sku_id&quot;: &quot;933&quot;, // SKUID
+                        &quot;sku_name&quot;: &quot;默认&quot;, // SKU名称
+                        &quot;sku_count&quot;: &quot;1&quot;, // SKU数量
+                        &quot;sku_price&quot;: &quot;2.00&quot;, // SKU价格
+                        &quot;pay_price&quot;: &quot;2.00&quot;, // SKU实际支付价格
+                        &quot;sold_state_code&quot;: &quot;2101&quot; // SKU售后状态码
+                    }
+                ],
+                &quot;income&quot;: &quot;1.00&quot; // 订单预估收益
+            },
+        ]
+    },
+    &quot;consume&quot;: 163,
+    &quot;time&quot;: 1598506525
+}
+</code></pre>
+<h4 id="店铺月销售业绩订单列表">店铺月销售业绩订单列表</h4>
+<p>调用场景：点击某个月的销售业绩跳转
+接口地址：ShopMonthSaleSubOrder/listShopMonthSaleSubOrderM
+请求方式：GET
+必选参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">month</td>
+<td align="left">2020-08</td>
+<td align="left">某一个月，yyyy-MM格式，/^\d{4}-\d{2}$/</td>
+</tr>
+</tbody></table>
+<p>可选参数：3个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认10</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0, // 0正常，其他异常
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;income&quot;: &quot;4.00&quot;, // 月收益金额（如果是当月，则统计到昨日）
+        &quot;more&quot;: false, // 是否有下一页
+        &quot;offset&quot;: &quot;218&quot;, // 下一页偏移量
+        &quot;order_m&quot;: [ // 订单列表
+            {
+                &quot;sub_order_id&quot;: &quot;310369990000469&quot;, // 子订单ID
+                &quot;addtime&quot;: &quot;2020-08-25 13:26:22&quot;, // 创建时间
+                &quot;state_code&quot;: &quot;1501&quot;, // 订单状态码
+                &quot;price&quot;: &quot;2.00&quot;, // 订单金额
+                &quot;pay_price&quot;: &quot;2.00&quot;, // 订单实付金额
+                &quot;sku_m&quot;: [ // SKU列表
+                    {
+                        &quot;goods_id&quot;: &quot;1503691700013&quot;, // 商品ID
+                        &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // 商品名称
+                        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4204913c51a77ce9f6c7a14e324135ab.jpg&quot;, // 商品封面
+                        &quot;sku_id&quot;: &quot;437&quot;, // SKUID
+                        &quot;sku_name&quot;: &quot;米白色（方头） 35&quot;, // SKU名称
+                        &quot;sku_count&quot;: &quot;1&quot;, // SKU数量
+                        &quot;sku_price&quot;: &quot;2.00&quot;, // SKU价格
+                        &quot;pay_price&quot;: &quot;2.00&quot;, // SKU实际支付价格
+                        &quot;sold_state_code&quot;: &quot;0&quot; // SKU售后状态码
+                    }
+                ],
+                &quot;income&quot;: &quot;1.00&quot; // 订单预估收益金额
+            },
+        ]
+    },
+    &quot;consume&quot;: 299,
+    &quot;time&quot;: 1598512021
+}
+</code></pre>
+<h4 id="联系客服对话框功能区订单卡片列表">联系客服对话框功能区订单卡片列表</h4>
+<p>调用场景：点击联系客服对话框功能区订单时
+接口地址：SampleOrderCard/listSampleOrderCardM
+请求方式：GET
+可选参数：3个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">offset</td>
+<td align="left">0</td>
+<td align="left">偏移量</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">2</td>
+<td align="left">展示量，默认10，建议取服务端预设的默认值，不要自己传</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">DESC</td>
+<td align="left">排序方式，DESC降序，ASC升序，默认DESC</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0, // 0正常，其他异常
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;more&quot;: true, // true有下一页，false没有下一页
+        &quot;offset&quot;: &quot;1149&quot;, // 获取下一页数据时回传次参数
+        &quot;order_m&quot;: [ // 订单列表数组
+            {
+                &quot;sub_order_id&quot;: &quot;307370250000732&quot;, // 子订单ID，标识该订单是子订单
+                &quot;addtime&quot;: &quot;2020-09-07 15:58:19&quot;, // 订单创建时间
+                &quot;state_code&quot;: &quot;1201&quot;, // 订单状态码
+                &quot;price&quot;: &quot;2.00&quot;, // 订单合计总价格
+                &quot;sku_m&quot;: [ // 订单商品列表，默认只返回一个，结构不变，字段有删减
+                    {
+                        &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // 商品名称
+                        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4b1e1e927b068b5a9679b36f750255f6.jpg&quot;, // 商品缩略图
+                        &quot;sku_name&quot;: &quot;米白（尖头） 39&quot; // SKU名称
+                    }
+                ]
+            },
+            {
+                &quot;addtime&quot;: &quot;2020-09-07 15:58:18&quot;, // 订单创建时间
+                &quot;state_code&quot;: &quot;1001&quot;, // 订单状态码
+                &quot;price&quot;: &quot;2.00&quot;, // 订单合计总价格
+                &quot;order_id&quot;: &quot;207370250000720&quot;, // 主订单ID，标识该订单是主订单
+                &quot;sku_m&quot;: [// 订单商品列表，默认只返回一个，结构不变，字段有删减
+                    {
+                        &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // 商品名称
+                        &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4b1e1e927b068b5a9679b36f750255f6.jpg&quot;, // 商品缩略图
+                        &quot;sku_name&quot;: &quot;米白（尖头） 39&quot; // SKU名称
+                    }
+                ]
+            }
+        ]
+    },
+    &quot;consume&quot;: 117,
+    &quot;time&quot;: 1599465525
+}
+</code></pre>
+<h4 id="订单支付信息">订单支付信息</h4>
+<p>调用场景：未支付订单点击去付款时
+接口地址：SampleOrderPayInfo/getSampleOrderPayInfoS
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">order_id</td>
+<td align="left">201368310000319</td>
+<td align="left">主订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+  &quot;code&quot;: 0, // 0正常，其他异常
+  &quot;msg&quot;: &quot;&quot;,
+  &quot;data&quot;: {
+    &quot;order_total_pay_price&quot;: &quot;10.04&quot;, // 订单总需（实）付金额
+    &quot;order_id&quot;: &quot;207371850001178&quot;, // 主订单ID
+    &quot;pay_type&quot;: &quot;3&quot;, // 支付方式：1无平台；2余额支付；3微信-APP；4支付宝-APP；5微博；6微信-H5；7支付宝-H5；8微信-小程序；9微信-公众号
+    &quot;expire_time&quot;: &quot;2020-11-26 19:57:26&quot;, // 待支付过期时间
+    &quot;pay_price&quot;: &quot;0.04&quot; // 商品总需（实）付金额
+  },
+  &quot;consume&quot;: 116,
+  &quot;time&quot;: 1606390966
+}
+</code></pre>
+<h4 id="店铺订单计数数据摘要">店铺订单计数数据摘要</h4>
+<p>调用场景：店铺订单计数气泡：待付款、待发货、待收货
+接口地址：ShopSaleOrderInfo/getShopSaleOrderInfoS
+请求方式：GET
+输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;unpaid_count&quot;: 0,
+        &quot;unshipped_count&quot;: 0,
+        &quot;not_recived_count&quot;: 0
+    },
+    &quot;consume&quot;: 53,
+    &quot;time&quot;: 1600841100
+}
+</code></pre>
+<h4 id="预生成订单运费金额">预生成订单运费金额</h4>
+<p>调用场景：订单确认页展示勾选商品的运费金额
+接口地址：preOrderFreight/getPreOrderFreight
+请求方式：GET
+必需参数：2个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">region</td>
+<td align="left">河南省-洛阳市</td>
+<td align="left">收货地址，至少二级，级之间英文-分割</td>
+</tr>
+<tr>
+<td align="left">sku_list</td>
+<td align="left">[{&quot;merchant_id&quot;:1,&quot;freight_tpl_info&quot;:{&quot;freight_tpl_id&quot;:1,&quot;name&quot;:1,&quot;area_list&quot;:[{&quot;id&quot;:11,&quot;area&quot;:&quot;海南省&quot;,&quot;fee&quot;:1.1},{&quot;id&quot;:12,&quot;area&quot;:&quot;河南省-洛阳市&quot;,&quot;fee&quot;:11.11}]}}]</td>
+<td align="left">勾选商品用于计算运费的信息，购物车提交必传merchant_id，商品详情页提交可不传merchant_id或传0</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0, // 0正常，其他异常
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;express_cost&quot;: 22.22 // 订单（预）运费金额
+    },
+    &quot;consume&quot;: 107,
+    &quot;time&quot;: 1606825226
+}
+</code></pre>
+<h4 id="预售后订单退款金额">预售后订单退款金额</h4>
+<p>调用场景：申请售后时动态实时计算勾选商品的总退款金额
+接口地址：preSoldRefundAmount/getPreSoldRefundAmount
+请求方式：GET
+必需参数：2个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sub_order_id</td>
+<td align="left">307371990001153</td>
+<td align="left">子订单ID</td>
+</tr>
+<tr>
+<td align="left">sku_id</td>
+<td align="left">130,436</td>
+<td align="left">SKU ID列表字符串，英文逗号分割</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0, // 0正常，其他异常
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;sold_refund_amount&quot;: 641 // 预售后单退款总金额
+    },
+    &quot;consume&quot;: 107,
+    &quot;time&quot;: 1606825226
+}
+</code></pre>
+<h4 id="创建订单">创建订单</h4>
+<p>接口地址：sampleOrder/addSampleOrderS
+请求方式：POST
+必需参数：2个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">order_skus</td>
+<td align="left">[{&quot;goods_id&quot;:1503691700013,&quot;sku_id&quot;:437,&quot;sku_count&quot;:1},]</td>
+<td align="left">订单商品JSON字符串</td>
+</tr>
+<tr>
+<td align="left">address_id</td>
+<td align="left">1</td>
+<td align="left">收货人地址ID</td>
+</tr>
+</tbody></table>
+<p>可选参数：6个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">source</td>
+<td align="left">1</td>
+<td align="left">订单来源，3达人Andorid应用端，4达人iOS应用端</td>
+</tr>
+<tr>
+<td align="left">pay_type</td>
+<td align="left">1</td>
+<td align="left">支付平台，3微信支付，4支付宝支付</td>
+</tr>
+<tr>
+<td align="left">real_name</td>
+<td align="left">大眼</td>
+<td align="left">真实姓名</td>
+</tr>
+<tr>
+<td align="left">id_card</td>
+<td align="left">1000012827261287127</td>
+<td align="left">真实身份证号码</td>
+</tr>
+<tr>
+<td align="left">is_from_cart</td>
+<td align="left">Y</td>
+<td align="left">是否从购物车提交订单，Y是，N否，默认Y</td>
+</tr>
+<tr>
+<td align="left">remarks</td>
+<td align="left">订单备注</td>
+<td align="left">订单备注</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0, // 0正常，其他异常
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;order_id&quot;: &quot;207374510002010&quot;, // 主订单ID
+        &quot;buyer_id&quot;: &quot;7&quot;, // 买家ID
+        &quot;pay_price&quot;: &quot;66.00&quot;, // 商品总需（实）付金额
+        &quot;pay_type&quot;: 3, // 支付方式：1无平台；2余额支付；3微信-APP；4支付宝-APP；5微博；6微信-H5；7支付宝-H5；8微信-小程序；9微信-公众号
+        &quot;source&quot;: &quot;3&quot;, // 订单创建来源：1管理后台 巨鲸帮帮；2管理后台微博小店；3巨鲸帮帮达人Andorid应用端；4巨鲸帮帮达人iOS应用端；5微博小店（达人）；6巨鲸帮帮粉丝微信小程序端；7巨鲸帮帮粉丝H5；8微博小店（粉丝下单）；9一直播（粉丝下单）；10微博CPS；11一直播CPS
+        &quot;return_url&quot;: &quot;&quot;, // 跳转链接
+        &quot;order_total_pay_price&quot;: &quot;266.00&quot;, // 订单总需（实）付金额
+        &quot;type&quot;: &quot;2&quot;,
+        &quot;sub_order_id_list&quot;: [
+            &quot;307374510001793&quot; // 子订单ID
+        ],
+        &quot;prepay&quot;: {} // 支付参数信息
+    },
+    &quot;consume&quot;: 2432,
+    &quot;time&quot;: 1617858833
+}
+</code></pre>
+<h4 id="主订单详情">主订单详情</h4>
+<p>接口地址：sampleOrder/getSampleOrderS
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">order_id</td>
+<td align="left">201368290000250</td>
+<td align="left">主订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;shop_id&quot;: &quot;2&quot;, // 0正常，其他异常
+        &quot;type&quot;: &quot;2&quot;, // 订单类型：1样品订单；2销售订单；3定向闪购，4商家日常，5全量闪购
+        &quot;order_id&quot;: &quot;207374510002010&quot;, // 主订单ID
+        &quot;addtime&quot;: &quot;2021-04-08 13:13:51&quot;, // 创建时间
+        &quot;state_code&quot;: &quot;1001&quot;, // 订单流转状态
+        &quot;address&quot;: {
+            &quot;address&quot;: &quot;一个小山沟里&quot;, // 详细地址
+            &quot;name&quot;: &quot;俊阳达人&quot;, // 收货人名称
+            &quot;phone&quot;: &quot;15210757705&quot;, // 收货人联系电话
+            &quot;region&quot;: &quot;甘肃省-兰州市-城关区&quot;, // 地区
+            &quot;real_name&quot;: &quot;&quot;, // 真实姓名
+            &quot;id_card&quot;: &quot;&quot; // 身份证号码
+        },
+        &quot;price&quot;: &quot;66.00&quot;, // 订单商品总金额
+        &quot;pay_price&quot;: &quot;66.00&quot;, // 订单总商品实付金额
+        &quot;expire_time&quot;: &quot;2021-04-08 13:33:51&quot;, // 待支付过期时间
+        &quot;is_cross_border&quot;: &quot;N&quot;, // 订单是否包含跨境商品
+        &quot;seller_id&quot;: &quot;7&quot;, // 买家ID
+        &quot;express_cost&quot;: &quot;200.00&quot;, // 订单总运费金额
+        &quot;order_total_price&quot;: &quot;266.00&quot;, // 订单总金额
+        &quot;order_total_pay_price&quot;: &quot;266.00&quot;, // 订单总需（实）付金额
+        &quot;remarks&quot;: &quot;订单备注1&quot;, // 订单备注
+        &quot;shop_info&quot;: {
+            &quot;shop_id&quot;: &quot;2&quot;, // 店铺名称
+            &quot;name&quot;: &quot;俊阳小店&quot; // 店铺ID
+        },
+        &quot;sku_m&quot;: [
+            {
+                &quot;type&quot;: &quot;2&quot;, // 订单类型：1样品订单；2销售订单；3定向闪购，4商家日常，5全量闪购
+                &quot;cate_id&quot;: &quot;44&quot;, // 二级分类ID
+                &quot;goods_id&quot;: &quot;1503691700013&quot;, // SPU ID
+                &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // SPU 名称
+                &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4204913c51a77ce9f6c7a14e324135ab.jpg&quot;, // SPU 封面
+                &quot;sku_id&quot;: &quot;437&quot;, // SKU ID
+                &quot;sku_name&quot;: &quot;颜色分类:米白色（方头）,尺码:35&quot;, // SKU 名称
+                &quot;sku_price&quot;: &quot;33.00&quot;, // SKU 单价
+                &quot;pay_price&quot;: &quot;33.00&quot;, // SKU商品总支付金额
+                &quot;sku_count&quot;: &quot;1&quot;, // SKU数量
+                &quot;sold_state_code&quot;: &quot;0&quot;, // SKU售后状态码
+                &quot;gifts&quot;: [
+                    {
+                        &quot;gift_id&quot;: &quot;195&quot;, // 赠品ID
+                        &quot;gift_name&quot;: &quot;你好我是赠品&quot;, // 赠品名称
+                        &quot;gift_cover&quot;: &quot;https://img.jjbangbang.com/test/image/bdc6bd7560ee17bae6198c52926d79d6.jpg&quot;, // 赠品封面
+                        &quot;gift_count&quot;: &quot;1&quot; // 赠品数量
+                    }
+                ]
+            }
+        ]
+    },
+    &quot;consume&quot;: 185,
+    &quot;time&quot;: 1617859000
+}
+</code></pre>
+<h4 id="子订单详情">子订单详情</h4>
+<p>接口地址：sampleSubOrder/getSampleSubOrderS
+请求方式：GET
+必需参数：1个</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">实例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sub_order_id</td>
+<td align="left">301368290000596</td>
+<td align="left">子订单ID</td>
+</tr>
+</tbody></table>
+<p>输出结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0, // 0正常，其他异常
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;shop_id&quot;: &quot;2&quot;, // 0正常，其他异常
+        &quot;type&quot;: &quot;2&quot;, // 订单类型：1样品订单；2销售订单；3定向闪购，4商家日常，5全量闪购
+        &quot;sub_order_id&quot;: &quot;307374500001789&quot;, // 子订单ID
+        &quot;addtime&quot;: &quot;2021-04-07 21:49:27&quot;, // 创建时间
+        &quot;finish_time&quot;: &quot;1970-01-01 00:00:00&quot;, // 订单完成时间
+        &quot;state_code&quot;: &quot;1201&quot;, // 订单流转状态
+        &quot;price&quot;: &quot;66.00&quot;, // 订单商品总金额
+        &quot;pay_price&quot;: &quot;66.00&quot;, // 订单总商品实付金额
+        &quot;is_cross_border&quot;: &quot;N&quot;, // 订单是否包含跨境商品
+        &quot;has_sku_in_sold&quot;: &quot;N&quot;, // 订单是否有商品处于售后流程中
+        &quot;seller_id&quot;: &quot;7&quot;, // 买家ID
+        &quot;exists_express&quot;: &quot;N&quot;, // 是否存在物流信息
+        &quot;express_cost&quot;: &quot;200.00&quot;, // 订单总运费金额
+        &quot;order_total_price&quot;: &quot;266.00&quot;, // 订单总金额
+        &quot;order_total_pay_price&quot;: &quot;266.00&quot;, // 订单总需（实）付金额
+        &quot;address&quot;: {
+            &quot;address&quot;: &quot;一个小山沟里&quot;, // 详细地址
+            &quot;name&quot;: &quot;俊阳达人&quot;, // 收货人名称
+            &quot;phone&quot;: &quot;15210757705&quot;, // 收货人联系电话
+            &quot;region&quot;: &quot;甘肃省-兰州市-城关区&quot;, // 地区
+            &quot;real_name&quot;: &quot;&quot;, // 真实姓名
+            &quot;id_card&quot;: &quot;&quot; // 身份证号码
+        },
+        &quot;shop_info&quot;: {
+            &quot;shop_id&quot;: &quot;2&quot;, // 店铺名称
+            &quot;name&quot;: &quot;俊阳小店&quot; // 店铺ID
+        },
+        &quot;sku_m&quot;: [
+            {
+                &quot;type&quot;: &quot;2&quot;, // 订单类型：1样品订单；2销售订单；3定向闪购，4商家日常，5全量闪购
+                &quot;cate_id&quot;: &quot;44&quot;, // 二级分类ID
+                &quot;goods_id&quot;: &quot;1503691700013&quot;, // SPU ID
+                &quot;goods_name&quot;: &quot;西遇平底单鞋女夏百搭2020新款秋季方头方扣软皮软底浅口舒适瓢鞋&quot;, // SPU 名称
+                &quot;goods_cover&quot;: &quot;https://img.jjbangbang.com/goods/4204913c51a77ce9f6c7a14e324135ab.jpg&quot;, // SPU 封面
+                &quot;sku_id&quot;: &quot;437&quot;, // SKU ID
+                &quot;sku_name&quot;: &quot;颜色分类:米白色（方头）,尺码:35&quot;, // SKU 名称
+                &quot;sku_price&quot;: &quot;33.00&quot;, // SKU 单价
+                &quot;pay_price&quot;: &quot;33.00&quot;, // SKU实付金额
+                &quot;sku_count&quot;: &quot;1&quot;, // SKU数量
+                &quot;state_code&quot;: &quot;1701&quot;, // SKU流转状态码
+                &quot;sold_state_code&quot;: &quot;0&quot;, // SKU售后状态码
+                &quot;sold_expire_time&quot;: &quot;1970-01-01 00:00:00&quot;, // SKU售后流程待处理过期时间
+                &quot;sold_id&quot;: &quot;0&quot;, // SKU所在最近一次售后的售后单ID
+                &quot;express_id&quot;: &quot;0&quot;, // SKU所在物流包裹的物流ID
+                &quot;available_refund_amount&quot;: &quot;33.00&quot;, // SKU 可用退款金额
+                &quot;gifts&quot;: [
+                    {
+                        &quot;gift_id&quot;: &quot;195&quot;, // 赠品ID
+                        &quot;gift_name&quot;: &quot;你好我是赠品&quot;, // 赠品名称
+                        &quot;gift_cover&quot;: &quot;https://img.jjbangbang.com/test/image/bdc6bd7560ee17bae6198c52926d79d6.jpg&quot;, // 赠品封面
+                        &quot;gift_count&quot;: &quot;1&quot; // 赠品数量
+                    }
+                ]
+            }
+        ],
+        &quot;remarks&quot;: &quot;订单备注2&quot; // 订单备注
+    },
+    &quot;consume&quot;: 280,
+    &quot;time&quot;: 1617859487
+}
+</code></pre>

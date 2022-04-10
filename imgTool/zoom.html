@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/jquery.min.js"></script>
+        <style>
+            td
+            {
+                border: 1px dashed rgba(0,0,0, 0.8);
+            }
+        </style>
+    </head>
+    <body>
+        <!--原始画布-->
+        <canvas style="position: absolute; background-color: #000000;" id="canvas"></canvas>
+        <!--原始画布辅助线-->
+        <table id="table" border="1" style="position: absolute; border-collapse: collapse;">
+            <tr>
+                <td style="width: 78px;"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <!--剪裁画布-->
+        <canvas style="position: absolute;" id="canvas3"></canvas>
+        <!--剪裁画布辅助线-->
+        <table id="table3" border="1" style="position: absolute; border-collapse: collapse;">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <script>
+            //定义原始画布的宽度
+            let canvasW = 320;
+            //定义原始画布的高度
+            let canvasH = 180;
+            let s = 2;
+
+            //jQuery就绪回调
+            $(document).ready(function(){
+                //设置原始画布的宽度和高度
+                $("#canvas").css(
+                    {
+                        width: canvasW,
+                        height: canvasH,
+                    }
+                );
+                //设置原始画布辅助线的宽度和高度
+                $("#table").css(
+                    {
+                        width: canvasW,
+                        height: canvasH,
+                    }
+                );
+                //设置
+                $("#table3").css(
+                    {
+                        width: canvasW * s,
+                        height: canvasH * s,
+                    }
+                );
+                $("#canvas3").css("top", canvasH + 50);
+                $("#table3").css("top", canvasH + 50);
+
+                //实例化图片对象
+                let image = new Image();
+                //设置图片对象的src属性，图片路径
+                image.src = "images/001.jpeg";
+                //图片对象加载完毕回调
+                image.onload = () => {
+                    //获取原始画布DOM
+                    let canvas = document.getElementById("canvas");
+                    //设置原始画布像素的宽度（将整个图片的宽度缩放到当前设置的宽度）
+                    canvas.width = canvasW;
+                    //设置原始画布像素的高度（将整个图片的高度缩放到当前设置的高度）
+                    canvas.height = canvasH;
+                    //获取原始画布对象的二维平面信息
+                    let context = canvas.getContext("2d");
+                    /**
+                     * 当图片的宽度大于等于高度（x >= y）时，按照比例，将图片按照宽度进行缩放，保证图片缩放后的宽度与原始画布像素宽度
+                     * 一致，高度部分如果出现空缺则显示黑色背景（亦可显示为透明图层）
+                     */
+                    if(image.width >= image.height)
+                    {
+                        /**
+                         * 在原始画布上绘制图像（将图像显示出来）
+                         * 从坐标x=0,y=0即原始画布左上角顶点开始绘制
+                         * 绘制的图像的宽度为画布的宽度
+                         * 绘制的图像的高度为按照比例计算后的宽度
+                         */
+                        context.drawImage(image, 0, 0, canvasW, canvasW * image.height / image.width);
+                    }
+                    // x < y
+                    else
+                    {
+                        /**
+                         * 在原始画布上绘制图像（将图像显示出来）
+                         * 从坐标x=0,y=0即原始画布左上角顶点开始绘制
+                         * 绘制的图像的宽度为画布的宽度
+                         * 绘制的图像的高度为按照比例计算后的宽度
+                         */
+                        context.drawImage(image, 0, 0, canvasH * image.width / image.height, canvasH);
+                    }
+                    let x = 0;
+                    let y = 0;
+                    let w = 320;
+                    let h = 180;
+
+                    let canvas3 = document.getElementById("canvas3");
+                    canvas3.width = canvasW * s;
+                    canvas3.height = canvasH * s;
+                    let context3 = canvas3.getContext("2d");
+
+                    //x >= y
+                    if(image.width >= image.height)
+                    {
+                        context3.drawImage(image, x, y, image.width * w / canvasW, h / canvasW * image.width, 0, 0, w * s, h * s);
+                    }
+                    // x < y
+                    else
+                    {
+                        context3.drawImage(image, x, y, image.height * w / canvasH, h / canvasH * image.height, 0, 0, w, h);
+                    }
+
+                };
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!--remixicon-->
+        <link href="/libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <style>
+            *
+            {
+                margin: 0px;
+                padding: 0px;
+                font-size: 12px;
+                color: #515a6e;
+                box-sizing: border-box;
+            }
+            table td,th
+            {
+                padding: 0px;
+                margin: 0px;
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            /*翻页工具条ul*/
+            .page-bar-ul
+            {
+                list-style: none;
+                font-size: 0px;
+            }
+            /*翻页工具条ul>li*/
+            .page-bar-ul-li
+            {
+                display: inline-block;
+            }
+            /*翻页工具条ul>li>div选项*/
+            .page-bar-ul-li-div
+            {
+                height: 36px;
+                line-height: 36px;
+                padding: 0px 10px;
+                border: 1px solid #e8eaec;
+                outline: none;
+                margin-right: 5px;
+                display: inline-block;
+                user-select: none;
+            }
+            /*翻页工具条ul>li>div选项中非按钮文本*/
+            .page-bar-ul-li-div-text
+            {
+                margin-right: 0px;
+                border: none;
+            }
+            /*翻页工具条ul>li>div>text>input选项中非按钮文本中输入框*/
+            .page-bar-ul-li-div-text-input
+            {
+                width: 36px;
+                height: 36px;
+                box-sizing: border-box;
+                margin: 0px;
+                padding: 0px;
+                border: 1px solid #e8eaec;
+                outline: none;
+                text-align: center;
+            }
+
+
+
+
+            /*单条数据对象操作控制按钮td*/
+            .control-td
+            {
+                user-select: none;
+            }
+            /*单条数据对象操作控制按钮td>ul*/
+            .control-td-ul
+            {
+                list-style: none;
+                font-size: 0px;
+                height: 36px;
+                padding: 0px;
+                margin: 0px;
+            }
+            /*单条数据对象操作控制按钮td>ul>li*/
+            .control-td-ul-li
+            {
+                display: inline-block;
+                margin: 0px 2px;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            /*通用按钮样式*/
+            .common-btn
+            {
+                user-select: none;
+                cursor: pointer;
+            }
+
+
+
+
+        </style>
+    </head>
+    <body>
+        <!--导航-->
+        <div style="border: 0px solid red; height: 36px; line-height: 36px; padding: 0px; margin-bottom: 36px;">
+            <ul style="list-style: none; font-size: 0px; margin: 0px;">
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">首页</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">教程</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">主题</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">新建</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--搜索控制区-->
+        <div style="border: 0px solid red; line-height: 36px; padding: 0px; margin-bottom: 36px;">
+            <ul style="list-style: none; font-size: 0px; margin: 0px;">
+
+<!--                <li style="font-size: 0px; height: 36px; margin-bottom: 36px;">-->
+<!--                    <div style="display: inline-block; height: 36px; width: 100px;">-->
+<!--                        <label style="font-size: 12px;">顶级名称：</label>-->
+<!--                    </div>-->
+<!--                    <div style="display: inline-block; height: 36px; margin-right: 30px;">-->
+<!--                        <select style="text-indent: 5px; box-sizing: border-box; height: 36px; outline: none; line-height: 36px; border-radius: 0px; width: 200px; margin: 0px; padding: 0px; border: 1px solid #e8eaec; -webkit-appearance: none; background-color: #ffffff;">-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">请选择顶级名称（必选）</option>-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">教程</option>-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">教程</option>-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">教程</option>-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">教程</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li style="font-size: 0px; height: 36px; margin-bottom: 36px;">-->
+<!--                    <div style="display: inline-block; height: 36px; width: 100px;">-->
+<!--                        <label style="font-size: 12px;">父级名称：</label>-->
+<!--                    </div>-->
+<!--                    <div style="display: inline-block; height: 36px; margin-right: 30px;">-->
+<!--                        <select style="text-indent: 5px; box-sizing: border-box; height: 36px; outline: none; line-height: 36px; border-radius: 0px; width: 200px; margin: 0px; padding: 0px; border: 1px solid #e8eaec; -webkit-appearance: none; background-color: #ffffff;">-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">请选择父级名称（必选）</option>-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">教程</option>-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">教程</option>-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">教程</option>-->
+<!--                            <option style="-webkit-appearance: none; width: 200px; height: 36px;">教程</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </li>-->
+                <li style="font-size: 0px; height: 36px; margin-bottom: 36px;">
+                    <div style="display: inline-block; height: 36px; width: 100px;">
+                        <label style="font-size: 12px;">主题名称：</label>
+                    </div>
+                    <div style="display: inline-block; height: 36px; margin-right: 30px;">
+                        <input type="text" style="text-indent: 5px; width: 200px; height: 36px; box-sizing: border-box; margin: 0px; padding: 0px; border: 1px solid #e8eaec; outline: none;" placeholder="请填写主题名称（必选）">
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <!--数据展示区-->
+        <div style="border: 0px solid red; height: auto; line-height: 36px; padding: 0px;">
+            <div style="margin-bottom: 36px;">
+                <div class="common-btn" style="height: 36px; line-height: 36px; width: 100px; outline: none; text-align: center; border: 1px solid #e8eaec; text-align: center">
+                    <i class="ri-save-line"></i>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

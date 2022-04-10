@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="libs/jquery/v3.4.1/jquery.min.js"></script>
+        <link href="libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <script src="libs/xguoguo/v1.0.0/xguoguo.min.js"></script>
+        <style>
+            *
+            {
+                margin: 0px;
+                padding: 0px;
+            }
+            /*布局样式*/
+            .layout
+            {
+                z-index: -1;
+            }
+            /*上布局*/
+            .top
+            {
+                background-color: #f8f8f9;
+                z-index: 0;
+                position: absolute;
+                height: 100px;
+                top: 0px;
+                left: 0px;
+                right: 0px;
+                box-shadow: 0px 0px 2px 1px #e8eaec;
+
+            }
+            /*左布局*/
+            .left
+            {
+                z-index: 0;
+                position: absolute;
+                width: 200px;
+                top: 100px;
+                left: 0px;
+                bottom: 50px;
+                border-right: 1px solid #e8eaec;
+            }
+            /*右布局*/
+            .main
+            {
+                position: absolute;
+                top: 100px;
+                left: 200px;
+                right: 0px;
+                bottom: 50px;
+                padding: 36px;
+            }
+            /*下布局*/
+            .bottom
+            {
+                position: absolute;
+                height: 50px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                border-top: 1px solid #e8eaec;
+            }
+            .top-logo
+            {
+                position: absolute;
+                left: 0px;
+                width: 200px;
+                height: 100px;
+                text-align: center;
+                line-height: 100px;
+                font-weight: 100;
+                color: #515a6e;
+                font-size: 18px;
+                text-shadow: 0px 0px 2px #ffffff;
+                border-right: 1px solid #e8eaec;
+            }
+            /*上布局导航*/
+            .top-nav
+            {
+                position: absolute;
+                left: 236px;
+                border-left: 1px solid #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="layout top">
+            <div class="top-logo">
+                IAMGUOGUO
+            </div>
+            <div class="top-nav">
+                <div class="x-guoguo-navigate-horizontal-float"></div>
+            </div>
+        </div>
+        <div class="layout left"></div>
+        <div class="layout main">
+            <div style="height: 100px; width: 310px; background-color: #f8f8f9; margin-bottom: 30px;">
+
+            </div>
+            <div style="height: 100px; width: 310px; background-color: #f8f8f9; margin-bottom: 30px;">
+
+            </div>
+            <div style="height: 100px; width: 310px; background-color: #f8f8f9; margin-bottom: 30px;">
+
+            </div>
+            <div style="height: 100px; width: 310px; background-color: #f8f8f9; margin-bottom: 30px;">
+
+            </div>
+        </div>
+        <div class="layout bottom"></div>
+
+        <script>
+            $(document).ready(function(){
+                $.ajax(
+                    {
+                        method: "GET",
+                        url: "http://127.0.0.1:8000/api/menu",
+                        success: function(e){
+                            if(e.code == 200)
+                            {
+                                //导航-水平-浮动
+                                $('.x-guoguo-navigate-horizontal-float').xGuoguo(
+                                    {
+                                        //类型
+                                        type: "navigate",
+                                        //方向
+                                        direction: "horizontal",
+                                        //风格
+                                        style: "float",
+                                        //数据
+                                        data: e.data,
+
+                                        //节点对象
+                                        item: {
+                                            //宽度
+                                            width: 150,
+                                            height: 36,
+                                            backgroundColor: '#f8f8f9',
+                                            margin: {
+                                                bottom: 0,
+                                            },
+                                            border: {
+                                                right: "1px solid #ffffff",
+                                            },
+                                            hover: {
+                                                border: {
+                                                    right: "1px solid #ffffff",
+                                                },
+                                                backgroundColor: '#e8eaec',
+                                            },
+                                        },
+                                    }
+                                );
+                                $(".x-guoguo-navigate-horizontal-float > ul > li > div").css(
+                                    {
+                                        height: "99px",
+                                        lineHeight: "100px",
+                                        borderRight: "1px solid #ffffff",
+                                    }
+                                );
+                                $(".x-guoguo-navigate-horizontal-float > ul > li > div > i, .x-guoguo-navigate-horizontal-float > ul > li > div > a, .x-guoguo-navigate-horizontal-float > ul > li > div > span").css(
+                                    {
+                                        height: "99px",
+                                        lineHeight: "100px",
+                                    }
+                                );
+                            }
+                        },
+                    }
+                );
+            });
+        </script>
+    </body>
+</html>

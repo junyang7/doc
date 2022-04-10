@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor</title>
+    <script src="libs/jquery/v3.4.1/jquery.min.js"></script>
+    <script src="libs/tinycolor/v1.4.1/tinycolor-min.js"></script>
+    <link href="libs/remixicon/v1.6.1/remixicon.css" type="text/css" rel="stylesheet">
+    <script src="libs/codemirror/v5.48.4/codemirror.min.js"></script>
+    <link href="libs/codemirror/v5.48.4/codemirror.css" type="text/css" rel="stylesheet">
+    <script src="libs/xeditor/v1.0.0/xeditor.js"></script>
+
+    <style>
+        body
+        {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <!--编辑器布局-->
+    <div class="xEditor" style="width: 850px; height: 300px;"></div>
+    <button id="submit">提交</button>
+    <script>
+        $(document).ready(function(){
+            $(".xEditor").xEditor(
+                {
+                    uploadUrl: "http://127.0.0.1:8000/api/upload",
+                }
+            );
+        });
+    </script>
+</body>
+</html>

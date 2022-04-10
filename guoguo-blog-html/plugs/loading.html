@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>组件-加载</title>
+<!--        &lt;!&ndash;jquery&ndash;&gt;-->
+<!--        <script src="/libs/jquery/v3.4.1/jquery.min.js"></script>-->
+<!--        &lt;!&ndash;remixicon&ndash;&gt;-->
+<!--        <link href="/libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">-->
+<!--        &lt;!&ndash;xloading&ndash;&gt;-->
+<!--        <link href="/libs/xloading/v1.0.0/xloading.css" rel="stylesheet">-->
+<!--        <script src="/libs/xloading/v1.0.0/xloading.js"></script>-->
+    </head>
+    <body>
+        <div id="test" style="position: absolute; height: 2px; width: 0%; background-color: red; box-sizing: border-box;"></div>
+        <script>
+            // let process = document.getElementById("test");
+            // i = 0;
+            // let abcd = setInterval(function(){
+            //     let j = 100;
+            //     if(i <= 25)
+            //     {
+            //         j = 500;
+            //     }
+            //     if(i > 25 && i <= 50)
+            //     {
+            //         j = 800;
+            //     }
+            //     if(i > 50 && i <= 75)
+            //     {
+            //         j = 900;
+            //     }
+            //     if(i > 75 && i <= 90)
+            //     {
+            //         j = 1000;
+            //     }
+            //     if(i > 90 && i <= 95)
+            //     {
+            //         j = 1500;
+            //     }
+            //     if(i > 95 && i <= 1000)
+            //     {
+            //         j = 2000;
+            //     }
+            //     i = i + (100 - i) / j;
+            //     b(i);
+            // }, 5)
+
+            function b(i)
+            {
+                console.log(i)
+                process.style.width = i + "%";
+            }
+            // $(document).ready(function(){
+            //     xLoading.$show();
+            //     setTimeout(function(){
+            //         xLoading.$hidden()
+            //     }, 5000)
+            // });
+        </script>
+    </body>
+</html>

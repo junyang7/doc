@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/jquery.min.js"></script>
+    </head>
+    <body>
+    <table id="table" border="1" style="position: absolute; border-collapse: collapse; border: 1px dotted rgba(255, 255, 255, 0.5);">
+        <tr>
+            <td style="width: 100px;"></td>
+            <td style="width: 150px;"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <canvas id="canvas"></canvas>
+    <br>
+    <canvas id="canvas3"></canvas>
+        <script>
+            let canvasW = 400;
+            let canvasH = 300;
+            $(document).ready(function(){
+                $("#table").css(
+                    {
+                        width: canvasW,
+                        height: canvasH,
+                    }
+                );
+                let image = new Image();
+                image.src = "images/000.jpeg";
+                image.onload = () => {
+                    let canvas = document.getElementById("canvas");
+                    canvas.width = canvasW;
+                    canvas.height = canvasH;
+                    console.log(canvas.height)
+                    console.log($("#canvas").height())
+                    let context = canvas.getContext("2d");
+                    context.drawImage(image, 0, 0, image.width, image.height);
+
+
+                    let x = 0;
+                    let y = 0;
+                    let w = 102;
+                    let h = canvasH;
+                    let canvas3 = document.getElementById("canvas3");
+                    canvas3.width = w;
+                    canvas3.height = h;
+                    let context3 = canvas3.getContext("2d");
+                    context3.drawImage(image, x, y, w, h, 0, 0, w, h);
+                };
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!--jquery-->
+        <script src="/libs/jquery/v3.4.1/jquery.min.js"></script>
+        <!--xtree-->
+        <script src="/libs/xguoguo/v1.0.0/xguoguo.min.js"></script>
+        <!--tinycolor-->
+        <script src="/libs/tinycolor/v1.4.1/tinycolor-min.js"></script>
+        <!--remixicon-->
+        <link href="/libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <!--codemirror-->
+        <script src="/libs/codemirror/v5.48.4/codemirror.min.js"></script>
+        <link href="/libs/codemirror/v5.48.4/codemirror.css" type="text/css" rel="stylesheet">
+        <!--xeditor-->
+        <script src="/libs/xeditor/v1.0.0/xeditor.js"></script>
+        <style>
+            *
+            {
+                margin: 0px;
+                padding: 0px;
+                font-size: 12px;
+                color: #515a6e;
+                box-sizing: border-box;
+            }
+            img
+            {
+
+                max-width: 100%;
+
+            }
+        </style>
+    </head>
+    <body>
+        <!--搜索控制区-->
+        <div id="text" style="width: 822px; height: 100%; line-height: 20px;"></div>
+        <script>
+            $(document).ready(function(){
+
+
+                $.ajax(
+                    {
+                        method: "GET",
+                        url: "http://127.0.0.1:8000/api/article",
+                        success: function(e){
+                            console.log(e)
+                            // console.log(htmlDecodeByRegExp(e[0]["article"]))
+                            // let html = $(htmlDecodeByRegExp(e[0]["article"]));
+                            $("#text").append(e[0]["content"])
+                        },
+                    }
+                );
+
+
+            });
+        </script>
+    </body>
+</html>

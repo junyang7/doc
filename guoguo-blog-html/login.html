@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>登录</title>
+        <!--jquery-->
+        <script src="/libs/jquery/v3.4.1/jquery.min.js"></script>
+        <!--remixicon-->
+        <link href="/libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <!--xmessage-->
+        <link href="/libs/xmessage/v1.0.0/xmessage.css" rel="stylesheet">
+        <script src="/libs/xmessage/v1.0.0/xmessage.js"></script>
+
+        <!--xloading-->
+        <link href="/libs/xloading/v1.0.0/xloading.css" rel="stylesheet">
+        <script src="/libs/xloading/v1.0.0/xloading.js"></script>
+
+        <style>
+            /*全局所有元素属性处理*/
+            *
+            {
+                margin: 0px;
+                padding: 0px;
+            }
+            /*登录窗口容器*/
+            .box
+            {
+                position: absolute;
+                left: 50%;
+                margin-left: -150px;
+                top: 40%;
+                margin-top: -150px;
+                width: 300px;
+                height: 300px;
+                box-sizing: border-box;
+                border: 1px solid #e8eaec;
+                box-shadow: 0px 0px 2px 1px #e8eaec;
+                padding: 50px;
+                user-select: none;
+            }
+            /*登录填写项容器*/
+            .box > div:first-child
+            {
+                margin-bottom: 50px;
+            }
+            /*登录控制项容器*/
+            .box > div:last-child
+            {
+                position: absolute;
+                bottom: 50px;
+            }
+            /*项*/
+            .box > div:first-child > div, .box > div:last-child > div
+            {
+                text-align: center;
+                height: 36px;
+                line-height: 36px;
+                margin-bottom: 18px;
+                font-size: 0px;
+            }
+            .box > div:first-child > div > div:first-child, .box > div:last-child > div > div:first-child
+            {
+                position: absolute;
+                height: 36px;
+                width: 200px;
+            }
+            .box > div:first-child > div > div:first-child > input:first-child, .box > div:last-child > div > div:first-child > input:first-child
+            {
+                width: 200px;
+                height: 36px;
+                line-height: 36px;
+                box-sizing: border-box;
+                margin: 0px;
+                padding: 0px 10px 0px 26px;
+                border: 1px solid #e8eaec;
+                outline: none;
+                color: #808695;
+            }
+            .box > div:first-child > div > div:nth-child(2)
+            {
+                position: absolute;
+                width: 30px;
+                height: 36px;
+                font-size: 12px;
+                color: #808695;
+                text-align: center;
+            }
+            .box > div:last-child > div
+            {
+                margin-bottom: 0px;
+                font-size: 12px;
+                border: 1px solid #e8eaec;
+                width: 200px;
+                height: 36px;
+                line-height: 36px;
+                box-sizing: border-box;
+                outline: none;
+                color: #808695;
+                cursor: pointer;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div>
+                <div>
+                    <div>
+                        <input id="account" type="text" autofocus placeholder="账号">
+                    </div>
+                    <div>
+                        <i class="ri-user-line"></i>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <input id="password" type="password" autofocus placeholder="密码">
+                    </div>
+                    <div>
+                        <i class="ri-key-2-line"></i>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div id="login">
+                    <div>
+                        <span>登录</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+
+                //登录
+                $(".box #login").click(function(){
+                    xLoading.$show();
+                    //账号
+                    let account = $("#account").val().trim();
+                    if(!account)
+                    {
+                        xLoading.$hidden();
+                        xMessage.$warning("账号不能为空！");
+                        return;
+                    }
+                    //密码
+                    let password = $("#password").val().trim();
+                    if(!password)
+                    {
+                        xLoading.$hidden();
+                        xMessage.$warning("密码不能为空！");
+                        return;
+                    }
+                    $.ajax(
+                        {
+                            method: "POST",
+                            url: "http://127.0.0.1:8000/api/login",
+                            data: {
+                                account: account,
+                                password: password,
+                            },
+                            success: function(e)
+                            {
+                                xLoading.$hidden();
+                                xMessage.$success("登录成功！");
+                                location.href = "admin/index.html"
+                            },
+                            error: function(e)
+                            {
+                                xMessage.$error(e.toString());
+                            },
+                        }
+                    );
+                });
+            });
+        </script>
+    </body>
+</html>

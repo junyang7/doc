@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/jquery.min.js"></script>
+        <style>
+            <!--剪裁区域边框样式-->
+            td
+            {
+                border: 1px dashed rgba(255, 0, 0, 0.8);
+            }
+        </style>
+    </head>
+    <body>
+        <!--剪裁区域边框-->
+        <div id="line" style="position: absolute; border: 1px dashed red;"></div>
+        <!--原始画布-->
+        <div style="width: 320px; height: 180px; background-color: #000000; border: 1px solid red; text-align: left;">
+            <canvas id="origin" style="background-color: transparent; width: 100%; height: 100%;"></canvas>
+        </div>
+        <!--剪裁按钮-->
+        <button id="btn">剪裁</button>
+        <!--目标画布-->
+        <div style="width: 320px; height: 180px; background-color: #ffffff; border: 1px solid red; text-align: left;">
+            <canvas id="target" style="background-color: transparent;"></canvas>
+        </div>
+        <script>
+            /**
+             * 鼠标按下时记录的一些信息
+             * mousedown.origin 鼠标是否在原始画布上按下
+             * mousedown.line 鼠标是否在剪裁区域按下
+             * mousedown.xClient 鼠标按下时的鼠标的横坐标
+             * mousedown.yClient 鼠标按下时的鼠标的纵坐标
+             * mousedown.xLine 鼠标按下时剪裁区域左上角顶点的横坐标
+             * mousedown.yLine 鼠标按下时剪裁区域左上角顶点的纵坐标
+             * @type {{xClient: number, yLine: number, xLine: number, line: boolean, origin: boolean, yClient: number}}
+             */
+            let mousedown = {
+                origin: false,
+                line: false,
+                xClient: 0,
+                yClient: 0,
+                xLine: 0,
+                yLine: 0,
+            };
+            /**
+             * 一些需要传入和过程参数
+             * argus.img 载入渲染完毕的图片对象
+             * argus.src 载入渲染的图片路径
+             * argus.origin 原始画布信息
+             * argus.origin.id 原始画布的ID属性值
+             * argus.origin.canvas 原始画布对象DOM
+             * argus.origin.context 原始画布对象DOM二维平面像素点信息
+             * argus.origin.x 原始画布绘制左上角顶点横坐标
+             * argus.origin.y 原始画布绘制左上角顶点纵坐标
+             * argus.origin.width 原始画布绘制宽度
+             * argus.origin.height 原始画布绘制高度
+             * argus.target 目标画布信息
+             * argus.target.id 目标画布的ID属性值
+             * argus.target.canvas 目标画布对象DOM
+             * argus.target.context 目标画布对象DOM二维平面像素点信息
+             * argus.target.sx 目标画布剪裁区域左上角顶点相对于图片对象的横坐标
+             * argus.target.sy 目标画布剪裁区域左上角顶点相对于图片对象的纵坐标
+             * argus.target.swidth 目标画布剪裁区域宽度
+             * argus.target.sheight 目标画布剪裁区域高度
+             * argus.target.x 目标画布绘制左上角顶点横坐标
+             * argus.target.y 目标画布绘制左上角顶点纵坐标
+             * argus.target.width 目标画布绘制宽度
+             * argus.target.height 目标画布绘制高度
+             * @type {{img: null, src: string, origin: {canvas: null, context: null, x: number, width: number, y: number, id: string, height: number}, target: {canvas: null, sx: number, sy: number, context: null, swidth: number, x: number, width: number, y: number, id: string, sheight: number, height: number}}}
+             */
+            let argus = {
+                img: null,
+                src: "images/20180926162125_vjbwi.jpg",
+                origin: {
+                    id: "origin",
+                    canvas: null,
+                    context: null,
+                    x: 0,
+                    y: 0,
+                    width: 320,
+                    height: 180,
+                },
+                target: {
+                    id: "target",
+                    canvas: null,
+                    context: null,
+                    sx: 0,
+                    sy: 0,
+                    swidth: 0,
+                    sheight: 0,
+                    x: 0,
+                    y: 0,
+                    width: 80,
+                    height: 180,
+                },
+            };
+            $(document).ready(() => {
+                /**
+                 * 监听鼠标在原始画布上按下事件
+                 * 将剪裁区域定位到鼠标点击位置，重置剪裁区域的长度和高度，将鼠标状态设置为原始画布上按下
+                 */
+                $("#" + argus.origin.id).on("mousedown", (event) => {
+                    $("#line").css(
+                        {
+                            left: event.clientX -1,
+                            top: event.clientY - 1,
+                            width: 0,
+                            height: 0,
+                        }
+                    );
+                    mousedown.origin = true;
+                });
+                /**
+                 * 监听鼠标在剪裁区域按下事件
+                 * 记录鼠标的横坐标、纵坐标和剪裁区域左上角顶点的横坐标和纵坐标，将鼠标状态设置为剪裁区域上按下
+                 */
+                $("#line").on("mousedown", (event) => {
+                    mousedown.line = true;
+                    mousedown.xClient = event.clientX;
+                    mousedown.yClient = event.clientY;
+                    mousedown.xLine = $("#line").position().left;
+                    mousedown.yLine = $("#line").position().top;
+                });
+                /**
+                 * 监听鼠标松开事件
+                 * 将鼠标状态设置为没有按下
+                 */
+                $(document).on("mouseup", (event) => {
+                    mousedown.origin = false;
+                    mousedown.line = false;
+                });
+                /**
+                 * 监听鼠标在页面上移动事件
+                 * 对鼠标在原始画布而不在剪裁区域和鼠标在剪裁区域两种情况分别处理
+                 * 1、当鼠标在原始画布上移动的时候，根据鼠标移动的位置，调整剪裁区域的大小
+                 * 2、当鼠标在剪裁区域上移动的时候，根据鼠标移动的位置，调整剪裁区域的位置
+                 */
+                $(document).on("mousemove", (event) => {
+                    if(mousedown.origin)
+                    {
+                        if(event.clientX < $("#" + argus.origin.id).position().left + $("#" + argus.origin.id).width())
+                        {
+                            $("#line").css(
+                                {
+                                    width: event.clientX - $("#line").css("left").replace("px", "") -1,
+                                }
+                            );
+                        }
+                        if(event.clientY < $("#" + argus.origin.id).position().top + $("#" + argus.origin.id).height())
+                        {
+                            $("#line").css(
+                                {
+                                    height: event.clientY - $("#line").css("top").replace("px", "") -1,
+                                }
+                            );
+                        }
+                    }
+                    if(mousedown.line)
+                    {
+                        if(mousedown.xLine + (event.clientX - mousedown.xClient) >= $("#" + argus.origin.id).position().left && mousedown.xLine + (event.clientX - mousedown.xClient) < $("#" + argus.origin.id).position().left + $("#" + argus.origin.id).width() - $("#line").width() - 1)
+                        {
+                            $("#line").css(
+                                {
+                                    left: mousedown.xLine + (event.clientX - mousedown.xClient),
+                                }
+                            );
+                        }
+
+                        if(mousedown.yLine + (event.clientY - mousedown.yClient) >= $("#" + argus.origin.id).position().top && mousedown.yLine + (event.clientY - mousedown.yClient) < $("#" + argus.origin.id).position().top + $("#" + argus.origin.id).height() - $("#line").height() - 1)
+                        {
+                            $("#line").css(
+                                {
+                                    top: mousedown.yLine + (event.clientY - mousedown.yClient),
+                                }
+                            );
+                        }
+                    }
+                });
+                /**
+                 * 处理原始画布和目标画布的样式信息
+                 * 根据原始画布的父对象的尺寸设定原始画布和目标画布的尺寸
+                 * @type {jQuery}
+                 */
+                argus.origin.width = $("#" + argus.origin.id).parent().width();
+                argus.origin.height = $("#" + argus.origin.id).parent().height();
+                $("#" + argus.origin.id, "#" + argus.target.id).each(() => {
+                    $(this).css(
+                        {
+                            width: argus.origin.width,
+                            height: argus.origin.height,
+                        }
+                    );
+                });
+                /**
+                 * 加载图片资源，并在回调中渲染到原始画布中，渲染完毕，添加剪裁事件
+                 * 注意尺寸比例换算
+                 * @type {HTMLImageElement}
+                 */
+                argus.img = new Image();
+                argus.img.src = argus.src;
+                argus.img.onload = () => {
+                    argus.origin.canvas = $("#" + argus.origin.id)[0];
+                    argus.origin.canvas.width = argus.origin.width,
+                    argus.origin.canvas.height = argus.origin.height,
+                    argus.origin.context = argus.origin.canvas.getContext("2d");
+                    if(argus.img.width >= argus.img.height)
+                    {
+                        argus.origin.height = argus.origin.width * argus.img.height / argus.img.width;
+                    }
+                    else
+                    {
+                        argus.origin.width = argus.origin.height * argus.img.width / argus.img.height;
+                    }
+                    argus.origin.context.drawImage(
+                        argus.img,
+                        argus.origin.x,
+                        argus.origin.y,
+                        argus.origin.width,
+                        argus.origin.height
+                    );
+                    //剪裁事件
+                    $("#btn").click(() => {
+                        argus.target.width = $("#line").width();
+                        argus.target.height = $("#line").height();
+                        argus.target.sx = $("#line").position().left - $("#" + argus.origin.id).position().left;
+                        argus.target.sy = $("#line").position().top - $("#" + argus.origin.id).position().top;
+                        argus.target.canvas = $("#" + argus.target.id)[0];
+                        argus.target.canvas.width = argus.target.width;
+                        argus.target.canvas.height = argus.target.height;
+                        argus.target.context = argus.target.canvas.getContext("2d");
+                        if(argus.img.width >= argus.img.height)
+                        {
+                            argus.target.sx = argus.img.width * argus.target.sx / argus.origin.width;
+                            argus.target.sy = argus.target.sy / argus.origin.width * argus.img.width;
+                            argus.target.swidth = argus.img.width * argus.target.width / argus.origin.width;
+                            argus.target.sheight = argus.target.height / argus.origin.width * argus.img.width;
+                        }
+                        else
+                        {
+                            argus.target.sx = argus.img.height * argus.target.sx / argus.origin.height;
+                            argus.target.sy = argus.target.sy / argus.origin.height * argus.img.height;
+                            argus.target.swidth = argus.img.height * argus.target.width / argus.origin.height;
+                            argus.target.sheight = argus.target.height / argus.origin.height * argus.img.height;
+                        }
+                        argus.target.context.drawImage(
+                            argus.img,
+                            argus.target.sx,
+                            argus.target.sy,
+                            argus.target.swidth,
+                            argus.target.sheight,
+                            argus.target.x,
+                            argus.target.y,
+                            argus.target.width,
+                            argus.target.height
+                        );
+                    });
+                };
+            });
+        </script>
+    </body>
+</html>

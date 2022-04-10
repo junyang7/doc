@@ -1,0 +1,62 @@
+[
+  {
+    "id": 2,
+    "name": "服务端",
+    "pid": 0,
+    "ranking": 7,
+    "collapse": true,
+    "children": [
+      {
+        "id": 5,
+        "name": "商品中心",
+        "pid": 2,
+        "ranking": 4,
+        "collapse": true
+      },
+      {
+        "id": 4,
+        "name": "支付中心",
+        "pid": 2,
+        "ranking": 5,
+        "collapse": true
+      },
+      {
+        "id": 3,
+        "name": "订单中心",
+        "pid": 2,
+        "ranking": 6,
+        "collapse": true,
+        "children": [
+          {
+            "id": 8,
+            "name": "h5",
+            "pid": 3,
+            "ranking": 1,
+            "collapse": true
+          },
+          {
+            "id": 7,
+            "name": "mp",
+            "pid": 3,
+            "ranking": 2,
+            "collapse": true
+          },
+          {
+            "id": 6,
+            "name": "app",
+            "pid": 3,
+            "ranking": 3,
+            "collapse": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "客户端",
+    "pid": 0,
+    "ranking": 8,
+    "collapse": true
+  }
+]

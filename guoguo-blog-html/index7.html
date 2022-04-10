@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link href="libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <style>
+            /*loading*/
+            /*loading界面提示信息盒子中的图标*/
+            .loading-box-icon
+            {
+
+                color: #808695;
+                animation: rotate 1s infinite linear;
+                display: inline-block;
+                height: 30px;
+                width: 30px;
+                text-align: center;
+                line-height: 30px;
+                background-color: red;
+                border-radius: 100%;
+            }
+            /*loading界面提示信息盒子中的图标旋转动画*/
+            @keyframes rotate{
+                from
+                {
+                    transform: rotate(0deg);
+                }
+                to
+                {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+    <div style="width: 200px; height: 36px; line-height: 36px; font-size: 12px; color: #515a6e; border: 1px solid #e8eaec;">
+        <div class="loading-box-icon">
+            <i class="ri-add-circle-fill"></i>
+        </div>
+        <!--                        <span>登录</span>-->
+    </div>
+    </body>
+</html>

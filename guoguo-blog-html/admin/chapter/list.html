@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!--jquery-->
+        <script src="/libs/jquery/v3.4.1/jquery.min.js"></script>
+        <!--xtree-->
+        <script src="/libs/xguoguo/v1.0.0/xguoguo.min.js"></script>
+        <!--tinycolor-->
+        <script src="/libs/tinycolor/v1.4.1/tinycolor-min.js"></script>
+        <!--remixicon-->
+        <link href="/libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <!--codemirror-->
+        <script src="/libs/codemirror/v5.48.4/codemirror.min.js"></script>
+        <link href="/libs/codemirror/v5.48.4/codemirror.css" type="text/css" rel="stylesheet">
+        <!--xeditor-->
+        <script src="/libs/xeditor/v1.0.0/xeditor.js"></script>
+        <style>
+            *
+            {
+                margin: 0px;
+                padding: 0px;
+                font-size: 12px;
+                color: #515a6e;
+                box-sizing: border-box;
+            }
+            table td,th
+            {
+                padding: 0px;
+                margin: 0px;
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            /*翻页工具条ul*/
+            .page-bar-ul
+            {
+                list-style: none;
+                font-size: 0px;
+            }
+            /*翻页工具条ul>li*/
+            .page-bar-ul-li
+            {
+                display: inline-block;
+            }
+            /*翻页工具条ul>li>div选项*/
+            .page-bar-ul-li-div
+            {
+                height: 36px;
+                line-height: 36px;
+                padding: 0px 10px;
+                border: 1px solid #e8eaec;
+                outline: none;
+                margin-right: 5px;
+                display: inline-block;
+                user-select: none;
+            }
+            /*翻页工具条ul>li>div选项中非按钮文本*/
+            .page-bar-ul-li-div-text
+            {
+                margin-right: 0px;
+                border: none;
+            }
+            /*翻页工具条ul>li>div>text>input选项中非按钮文本中输入框*/
+            .page-bar-ul-li-div-text-input
+            {
+                width: 36px;
+                height: 36px;
+                box-sizing: border-box;
+                margin: 0px;
+                padding: 0px;
+                border: 1px solid #e8eaec;
+                outline: none;
+                text-align: center;
+            }
+
+
+
+
+            /*单条数据对象操作控制按钮td*/
+            .control-td
+            {
+                user-select: none;
+            }
+            /*单条数据对象操作控制按钮td>ul*/
+            .control-td-ul
+            {
+                list-style: none;
+                font-size: 0px;
+                height: 36px;
+                padding: 0px;
+                margin: 0px;
+            }
+            /*单条数据对象操作控制按钮td>ul>li*/
+            .control-td-ul-li
+            {
+                display: inline-block;
+                margin: 0px 2px;
+                padding: 0px;
+            }
+
+            /*通用按钮样式*/
+            .common-btn
+            {
+                user-select: none;
+                cursor: pointer;
+            }
+
+
+
+
+        </style>
+    </head>
+    <body>
+        <!--导航-->
+        <div style="border: 0px solid red; height: 36px; line-height: 36px; padding: 0px; margin-bottom: 36px;">
+            <ul style="list-style: none; font-size: 0px; margin: 0px;">
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">首页</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">教程</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">章节</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">列表</label>
+                    </div>
+                </li>
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; padding-right: 10px;">
+                        <label style="font-size: 12px;">/</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--搜索控制区-->
+        <div style="border: 0px solid red; height: 36px; line-height: 36px; padding: 0px; margin-bottom: 36px;">
+            <ul style="list-style: none; font-size: 0px; margin: 0px;">
+                <!--搜索选项-->
+                <li style="display: inline-block; font-size: 0px;">
+                    <div style="display: inline-block; height: 36px; width: 100px;">
+                        <label style="font-size: 12px;">教程文章：</label>
+                    </div>
+                    <div style="display: inline-block; height: 36px; margin-right: 30px;">
+                        <input type="text" style="text-indent: 5px; width: 200px; height: 36px; box-sizing: border-box; margin: 0px; padding: 0px; border: 1px solid #e8eaec; outline: none;" placeholder="请输入主题关键词（可选）">
+                    </div>
+                </li>
+                <!--搜索按钮-->
+                <li style="display: inline-block; font-size: 0px; float: right;">
+                    <div class="common-btn" style="height: 36px; width: 100px; border: 1px solid #e8eaec; outline: none; text-align: center;">
+                        <i class="ri-search-line"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--数据展示区-->
+        <div style="border: 0px solid red; height: auto; line-height: 36px; padding: 0px;">
+            <div>
+                <table border="1" style="width: 100%; border-collapse: collapse; font-size: 12px; border: 1px solid #e8eaec; margin-bottom: 36px;">
+                    <tr style="height: 36px;">
+                        <th style="width: 100px;">#</th>
+                        <th>标题</th>
+                        <th style="width: 100px;">浏览量</th>
+                        <th style="width: 100px;">评论量</th>
+                        <th style="width: 150px;">创建时间</th>
+                        <th style="width: 100px;">操作</th>
+                    </tr>
+                    <tr style="height: 36px;">
+                        <td>1</td>
+                        <td>购买百度云虚拟主机BCH</td>
+                        <td>98</td>
+                        <td>98</td>
+                        <td>2019-02-02 18:23:56</td>
+                        <td class="control-td">
+                            <ul class="control-td-ul">
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-eye-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="update common-btn ri-edit-box-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="delete common-btn ri-delete-bin-3-line"></i>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr style="height: 36px;">
+                        <td>2</td>
+                        <td>CentOS-7-x86_64-Minimal-1804</td>
+                        <td>54</td>
+                        <td>54</td>
+                        <td>2019-02-02 18:23:56</td>
+                        <td class="control-td">
+                            <ul class="control-td-ul">
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-eye-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-edit-box-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-delete-bin-3-line"></i>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr style="height: 36px;">
+                        <td>3</td>
+                        <td>Windows环境下zip安装Apache2.3.34</td>
+                        <td>32</td>
+                        <td>32</td>
+                        <td>2019-02-02 18:23:56</td>
+                        <td class="control-td">
+                            <ul class="control-td-ul">
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-eye-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-edit-box-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-delete-bin-3-line"></i>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr style="height: 36px;">
+                        <td>4</td>
+                        <td>PHP函数参考-ctype（字符类型检测）</td>
+                        <td>8</td>
+                        <td>8</td>
+                        <td>2019-02-02 18:23:56</td>
+                        <td class="control-td">
+                            <ul class="control-td-ul">
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-eye-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-edit-box-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-delete-bin-3-line"></i>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr style="height: 36px;">
+                        <td>5</td>
+                        <td>macOS Mojave10.14.4全局安装composer</td>
+                        <td>231</td>
+                        <td>231</td>
+                        <td>2019-02-02 18:23:56</td>
+                        <td class="control-td">
+                            <ul class="control-td-ul">
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-eye-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-edit-box-line"></i>
+                                </li>
+                                <li class="control-td-ul-li">
+                                    <i class="common-btn ri-delete-bin-3-line"></i>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-bottom: 36px;">
+                <div class="create common-btn" style="height: 36px; line-height: 36px; width: 100px; outline: none; text-align: center; border: 1px solid #e8eaec; text-align: center">
+                    <i class="ri-add-line"></i>
+                </div>
+            </div>
+            <div style="font-size: 0px;">
+                <ul class="page-bar-ul">
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">首页</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">8</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">9</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">&lt;</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">10</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">&gt;</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">11</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">12</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="common-btn page-bar-ul-li-div">尾页</div>
+                    </li>
+                    <li class="page-bar-ul-li">
+                        <div class="page-bar-ul-li-div page-bar-ul-li-div-text">
+                            <span>共</span>
+                            <span>846</span>
+                            <span>条数据，每页展示</span>
+                            <input class="page-bar-ul-li-div-text-input" type="number" value="10">
+                            <span>条，跳转到第</span>
+                            <input class="page-bar-ul-li-div-text-input" type="number" value="10">
+                            <span>页</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $(".create").click(function(e){
+                    parent.setIframeSrc("chapter/create.html");
+                });
+                $(".update").click(function(e){
+                    parent.setIframeSrc("chapter/update.html");
+                });
+                $(".delete").click(function(e){
+                    parent.setIframeSrc("chapter/delete.html");
+                });
+            });
+        </script>
+    </body>
+</html>

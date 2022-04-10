@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!--jquery-->
+        <script src="libs/jquery/v3.4.1/jquery.min.js"></script>
+        <!--remixicon-->
+        <link href="libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <!--xmessage-->
+        <link href="libs/xmessage/v1.0.0/xmessage.css" rel="stylesheet">
+        <script src="libs/xmessage/v1.0.0/xmessage.js"></script>
+    </head>
+    <body>
+<!--        <button id="btn-default" style="height: 36px; width: 150px; text-align: left; padding: 0px 10px;">添加提示:default</button>-->
+<!--        <br>-->
+<!--        <button id="btn-info" style="height: 36px; width: 150px; text-align: left; padding: 0px 10px;">添加提示:info</button>-->
+<!--        <br>-->
+<!--        <button id="btn-success" style="height: 36px; width: 150px; text-align: left; padding: 0px 10px;">添加提示:success</button>-->
+<!--        <br>-->
+<!--        <button id="btn-warning" style="height: 36px; width: 150px; text-align: left; padding: 0px 10px;">添加提示:warning</button>-->
+<!--        <br>-->
+<!--        <button id="btn-error" style="height: 36px; width: 150px; text-align: left; padding: 0px 10px;">添加提示:error</button>-->
+<!--        <br>-->
+
+        <script>
+            let i = 0;
+            $(document).ready(function(){
+
+
+
+
+                xMessage.$default("你有一条新的消息请查收");
+                xMessage.$info("你有一条新的消息请查收");
+                xMessage.$success("你有一条新的消息请查收");
+                xMessage.$warning("你有一条新的消息请查收");
+                xMessage.$error("你有一条新的消息请查收");
+
+                // $("#btn-default").click(function(){
+                //     let id = (new Date()).getTime();
+                //     let li = $(
+                //         '<li id="' + id + '">'+
+                //         '<div class="default">'+
+                //         '<i class="ri-information-line"></i>' +
+                //         '<span style="padding-left: 5px;">' +
+                //         '提示信息_'+ i++ +
+                //         '</span>' +
+                //         '</div>'+
+                //         '</li>'
+                //     );
+                //     setTimeout(function(){
+                //         li.remove()
+                //     }, 3000);
+                //     $(".guoguo-message-box > div > ul").prepend(li);
+                // });
+                //
+                // $("#btn-info").click(function(){
+                //     let id = (new Date()).getTime();
+                //     let li = $(
+                //         '<li id="' + id + '">'+
+                //             '<div class="info">'+
+                //                 '<i class="ri-information-line"></i>' +
+                //                 '<span style="padding-left: 5px;">' +
+                //                     '提示信息_'+ i++ +
+                //                 '</span>' +
+                //             '</div>'+
+                //         '</li>'
+                //     );
+                //     setTimeout(function(){
+                //        li.remove()
+                //     }, 3000);
+                //     $(".guoguo-message-box > div > ul").prepend(li);
+                // });
+                //
+                // $("#btn-success").click(function(){
+                //     let id = (new Date()).getTime();
+                //     let li = $(
+                //         '<li id="' + id + '">'+
+                //         '<div class="success">'+
+                //         '<i class="ri-information-line"></i>' +
+                //         '<span style="padding-left: 5px;">' +
+                //         '提示信息_'+ i++ +
+                //         '</span>' +
+                //         '</div>'+
+                //         '</li>'
+                //     );
+                //     setTimeout(function(){
+                //         li.remove()
+                //     }, 3000);
+                //     $(".guoguo-message-box > div > ul").prepend(li);
+                // });
+                //
+                // $("#btn-warning").click(function(){
+                //     let id = (new Date()).getTime();
+                //     let li = $(
+                //         '<li id="' + id + '">'+
+                //         '<div class="warning">'+
+                //         '<i class="ri-information-line"></i>' +
+                //         '<span style="padding-left: 5px;">' +
+                //         '提示信息_'+ i++ +
+                //         '</span>' +
+                //         '</div>'+
+                //         '</li>'
+                //     );
+                //     setTimeout(function(){
+                //         li.remove()
+                //     }, 3000);
+                //     $(".guoguo-message-box > div > ul").prepend(li);
+                // });
+                //
+                // $("#btn-error").click(function(){
+                //     let id = (new Date()).getTime();
+                //     let li = $(
+                //         '<li id="' + id + '">'+
+                //         '<div class="error">'+
+                //         '<i class="ri-information-line"></i>' +
+                //         '<span style="padding-left: 5px;">' +
+                //         '提示信息_'+ i++ +
+                //         '</span>' +
+                //         '</div>'+
+                //         '</li>'
+                //     );
+                //     setTimeout(function(){
+                //         li.remove()
+                //     }, 3000);
+                //     $(".guoguo-message-box > div > ul").prepend(li);
+                // });
+            });
+        </script>
+    </body>
+</html>

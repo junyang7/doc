@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!--remixicon-->
+        <link href="libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <style>
+            *
+            {
+                margin: 0px;
+                padding: 0px;
+            }
+            .loading
+            {
+                animation:xz 1s linear infinite ;
+            }
+
+
+            .fa-spinner:hover
+            {
+                transform: rotate(360deg);
+                color: red;
+            }
+            .fa-spinner{
+                animation: rotate 1s infinite linear;
+            }
+            @keyframes rotate{
+                from{transform: rotate(0deg);}
+                to{transform: rotate(360deg);}
+            }
+        </style>
+    </head>
+    <body>
+
+    <div style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; background-color: rgba(240, 241, 242, 0.5)">
+        <div style="width: 200px; height: 100px; box-sizing: border-box; border: 1px solid red; position: absolute; left: 50%; top: 50%; margin-left: -100px; margin-top: -50px; text-align: center;">
+            <div class="fa-spinner" style="display: inline-block; height: 30px; width: 30px; text-align: center; line-height: 30px; font-size: 30px;">
+                <i class="ri-loader-4-line"></i>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

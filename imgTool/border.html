@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .box{
+            position: relative;
+            width: 1000px;
+            height: 400px;
+            line-height: 400px;
+            margin: 0 auto;
+            text-align:center;
+            font-size: 40px;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .topBorder{
+            position: relative;
+            width:3000px;
+            border-top: 1px dashed red;
+        }
+
+        .leftBorder{
+            position: absolute;
+            width: 1px;
+            height: 40000px;
+            border-left:1px dashed red;
+        }
+
+        .rightBorder{
+            position: absolute;
+            right:0;
+            width:1px ;
+            height: 3000px;
+            border-right: 1px dashed red;
+        }
+
+        .bottomBorder{
+            position: absolute;
+            width:40000px;
+            bottom:0;
+            border-bottom: 1px dashed red;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="topBorder" id="J_borTop"></div>
+    <div class="leftBorder" id="J_borLeft"></div>
+    <div class="rightBorder" id="J_borRight"></div>
+    <div class="bottomBorder" id="J_borBottom"></div>
+</div>
+<script>
+
+    border_move();
+
+    //获取样式
+    function getStyleValue(ele,attr){
+        var doc=document;
+        var style=ele.currentStyle||doc.defaultView.getComputedStyle(ele,null);
+        return parseInt(style[attr].replace(/px/g,""));
+    }
+
+    // 边框旋转
+
+    function border_move(){
+        var borderT = document.getElementById("J_borTop"),
+            borderL = document.getElementById("J_borLeft"),
+            borderR = document.getElementById("J_borRight"),
+            borderB = document.getElementById("J_borBottom");
+        var left = getStyleValue(borderT,"left"),
+            top = getStyleValue(borderL,"top");
+        setInterval(function(){
+            if(left < 0){
+                left += 2;
+                borderR.style.top = left + 'px';
+                borderT.style.left = left + 'px';
+            }else{
+                left = -1500;
+            }
+            // if(top > -3000){
+            //     top -= 2;
+            //     borderB.style.left = top + 'px';
+            //     borderL.style.top = top +'px';
+            // }else{
+            //     top = -1500;
+            // }
+        },60)
+    }
+</script>
+</body>
+</html>

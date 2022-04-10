@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!--jquery-->
+        <script src="/libs/jquery/v3.4.1/jquery.min.js"></script>
+        <!--xtree-->
+        <script src="/libs/xguoguo/v1.0.0/xguoguo.js"></script>
+        <!--tinycolor-->
+        <script src="/libs/tinycolor/v1.4.1/tinycolor-min.js"></script>
+        <!--remixicon-->
+        <link href="/libs/remixicon/v2.0.0/remixicon.css" rel="stylesheet">
+        <!--codemirror-->
+        <script src="/libs/codemirror/v5.48.4/codemirror.min.js"></script>
+        <link href="/libs/codemirror/v5.48.4/codemirror.css" type="text/css" rel="stylesheet">
+        <!--xeditor-->
+        <script src="/libs/xeditor/v1.0.0/xeditor.js"></script>
+        <style>
+            *
+            {
+                margin: 0px;
+                padding: 0px;
+            }
+            td
+            {
+                padding: 0px;
+                font-size: 0px;
+            }
+            /*布局样式*/
+            .layout
+            {
+                z-index: -1;
+            }
+            /*上布局*/
+            .top
+            {
+                background-color: #f8f8f9;
+                z-index: 0;
+                position: absolute;
+                height: 100px;
+                top: 0px;
+                left: 0px;
+                right: 0px;
+                box-shadow: 0px 0px 2px 1px #e8eaec;
+
+            }
+            /*左布局*/
+            .left
+            {
+                z-index: 0;
+                position: absolute;
+                width: 250px;
+                top: 100px;
+                left: 0px;
+                bottom: 50px;
+                /*border-right: 1px solid #e8eaec;*/
+                overflow: auto;
+            }
+            /*右布局*/
+            .main
+            {
+                position: absolute;
+                top: 100px;
+                left: 250px;
+                right: 0px;
+                bottom: 50px;
+                padding: 36px 36px 36px 46px;
+                font-size: 12px;
+                color: #515a6e;
+                line-height: 24px;
+                overflow-y: auto;
+            }
+            /*下布局*/
+            .bottom
+            {
+                position: absolute;
+                height: 50px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                border-top: 1px solid #e8eaec;
+            }
+            .top-logo
+            {
+                position: absolute;
+                left: 0px;
+                width: 250px;
+                height: 100px;
+                text-indent: 36px;
+                line-height: 100px;
+                font-weight: 100;
+                color: #515a6e;
+                font-size: 18px;
+                text-shadow: 0px 0px 2px #ffffff;
+                /*border-right: 1px solid #e8eaec;*/
+            }
+            /*上布局导航*/
+            .top-nav
+            {
+                position: absolute;
+                left: 286px;
+                /*border-left: 1px solid #e8eaec;*/
+                vertical-align: top;
+            }
+
+            .x-guoguo-tree-vertical-default
+            {
+                padding: 36px;
+            }
+
+
+
+            #text
+            {
+                font-family: remixicon;
+                line-height: 20px;
+            }
+            img
+            {
+                width: auto;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="layout top">
+            <div class="top-logo"></div>
+            <div class="top-nav">
+                <div class="x-guoguo-navigate-horizontal-float"></div>
+            </div>
+        </div>
+        <div class="layout left">
+            <div class="x-guoguo-tree-vertical-default"></div>
+        </div>
+        <div class="layout main">
+            <div id="text" style="width: 779px; height: auto;"></div>
+<!--            <div style="position: absolute; right: 0px; top: 0px; height: 100%; width: 300px; border-left: 1px solid #e8eaec;"></div>-->
+        </div>
+        <div class="layout bottom"></div>
+
+        <script>
+
+
+            function htmlDecodeByRegExp(str)
+            {
+                var temp = "";
+                if(str.length == 0) return "";
+                temp = str.replace(/&amp;/g,"&");
+                temp = temp.replace(/&lt;/g,"<");
+                temp = temp.replace(/&gt;/g,">");
+                temp = temp.replace(/&nbsp;/g," ");
+                temp = temp.replace(/&#39;/g,"\'");
+                temp = temp.replace(/&quot;/g,"\"");
+                return temp;
+            }
+            $(document).ready(function(){
+                $.ajax(
+                    {
+                        method: "GET",
+                        url: "http://127.0.0.1:8000/api/menu",
+                        success: function(e){
+                            if(e.code == 200)
+                            {
+                                //导航-水平-浮动
+                                $('.x-guoguo-navigate-horizontal-float').xGuoguo(
+                                    {
+                                        //类型
+                                        type: "navigate",
+                                        //方向
+                                        direction: "horizontal",
+                                        //风格
+                                        style: "float",
+                                        //数据
+                                        data: e.data,
+
+                                        //节点对象
+                                        item: {
+                                            //宽度
+                                            width: 150,
+                                            height: 36,
+                                            backgroundColor: '#f8f8f9',
+                                            margin: {
+                                                bottom: 0,
+                                            },
+                                            border: {
+                                                // right: "1px solid #e8eaec",
+                                            },
+                                            hover: {
+                                                border: {
+                                                    // right: "1px solid #e8eaec",
+                                                },
+                                                backgroundColor: '#e8eaec',
+                                            },
+                                        },
+                                    }
+                                );
+                                $(".x-guoguo-navigate-horizontal-float > ul > li > div").css(
+                                    {
+                                        height: "100px",
+                                        lineHeight: "100px",
+                                        // borderRight: "1px solid #e8eaec",
+                                    }
+                                );
+                                $(".x-guoguo-navigate-horizontal-float > ul > li > div > i, .x-guoguo-navigate-horizontal-float > ul > li > div > a, .x-guoguo-navigate-horizontal-float > ul > li > div > span").css(
+                                    {
+                                        height: "100px",
+                                        lineHeight: "100px",
+                                    }
+                                );
+                                //树-垂直-默认
+                                $('.x-guoguo-tree-vertical-default').xGuoguo(
+                                    {
+                                        //类型
+                                        type: "tree",
+                                        //方向
+                                        direction: "vertical",
+                                        //风格
+                                        style: "default",
+                                        //数据
+                                        data: e.data,
+                                        item: {
+                                            height: 36,
+                                        },
+                                    }
+                                );
+                                $('.x-guoguo-tree-vertical-default').find(".ri-add-box-line").click();
+                            }
+                        },
+                    }
+                );
+
+
+
+
+                $.ajax(
+                    {
+                        method: "GET",
+                        url: "http://127.0.0.1:8000/api/article",
+                        success: function(e){
+                            console.log(e)
+                            // console.log(htmlDecodeByRegExp(e[0]["article"]))
+                            // let html = $(htmlDecodeByRegExp(e[0]["article"]));
+                            $("#text").append(e[0]["content"])
+                        },
+                    }
+                );
+            });
+        </script>
+    </body>
+</html>

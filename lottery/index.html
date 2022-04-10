@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <title>lottery</title>
+        <script src="libs/jquery/v3.4.1/jquery.min.js"></script>
+        <style>
+            #lottery
+            {
+                display: inline-block;
+                width: 300px;
+                height: 200px;
+                border: 1px solid #dcdee2;
+            }
+            #secret
+            {
+                position: absolute;
+                width: 300px;
+                height: 200px;
+                background-image: url("background.png");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+            #mask
+            {
+                position: absolute;
+                width: 300px;
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="lottery">
+            <div id="secret"></div>
+            <canvas id="mask"></canvas>
+        </div>
+        <script>
+            let mousedown = false;
+            let r = 2;
+            let mask = document.getElementById("mask");
+            mask.width = 300;
+            mask.height = 200;
+            let mask2d = mask.getContext("2d");
+            mask2d.rect(0, 0, mask.width, mask.height);
+            mask2d.fill();
+            mask2d.globalCompositeOperation = 'destination-out';
+
+
+            mask.addEventListener("mousedown", maskDown);
+            mask.addEventListener("mouseup", maskUp);
+            mask.addEventListener("mousemove", maskMove);
+
+
+            function maskDown(e)
+            {
+                e.preventDefault();
+                mousedown = true;
+            }
+            function maskUp(e)
+            {
+                e.preventDefault();
+                mousedown = false;
+            }
+            function maskMove(e)
+            {
+                e.preventDefault();
+                if(mousedown)
+                {
+                    mask2d.beginPath();
+                    mask2d.arc(e.offsetX, e.offsetY, r, 0, Math.PI * r);
+                    mask2d.fill();
+                }
+            }
+        </script>
+    </body>
+</html>
